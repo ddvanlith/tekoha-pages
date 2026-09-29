@@ -1,0 +1,102 @@
+name: tekoha-property-pages
+
+# One static page per property (https://ddvanlith.github.io/tekoha-pages/), built here because Actions
+# minutes are free on a public repository. The code is the private ddvanlith/tekoha
+# (pipeline/property-pages.mjs), checked out with a read-only deploy key (secret TEKOHA_CODE_KEY); the
+# database is read as the read-only role tekoha_reader (secret READONLY_DATABASE_URL). The whole
+# arrangement is in docs/ci-minutes.md of that repo.
+#
+# The private daily pull publishes between about 14:00 and 19:00 UTC (its cron starts hours late) and a
+# watchdog re-run can land near 22:00, so the build is scheduled after each. A scheduled build runs only
+# when a pipeline run has published since the last build (the last-run.txt it leaves in
+# ddvanlith/tekoha-daily) and that run's health was GREEN, as the old private workflow ran only after a
+# successful pull. A manual dispatch always builds.
+#
+# This log is public. The builder prints counts, timings and page paths; its output also passes a filter
+# that masks anything shaped like a connection string, an email address or a phone number.
+on:
+  schedule:
+    - cron: "15 19 * * *"
+    - cron: "15 23 * * *"
+  workflow_dispatch: {}
+
+concurrency:
+  group: property-pages
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  pages:
+    runs-on: ubuntu-latest
+    # An explicit bash runs with pipefail, so a builder that fails fails its step through the log filter.
+    defaults:
+      run:
+        shell: bash
+    timeout-minutes: 30
+    steps:
+      - name: New healthy pipeline run since the last build?
+        id: gate
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ "$GITHUB_EVENT_NAME" != "schedule" ]; then echo "build=true" >> "$GITHUB_OUTPUT"; exit 0; fi
+          RUN=$(gh api "repos/ddvanlith/tekoha-daily/commits?path=last-run.txt&per_page=1" -q '.[0].commit.committer.date // ""')
+          BUILT=$(gh api "repos/$GITHUB_REPOSITORY/commits/gh-pages" -q '.commit.committer.date')
+          HEALTH=$(gh api repos/ddvanlith/tekoha-daily/contents/health-status.txt -H "Accept: application/vnd.github.raw" 2>/dev/null) || HEALTH=UNKNOWN
+          echo "pipeline last published ${RUN:-never}; pages built $BUILT; health $HEALTH"
+          if [ -n "$RUN" ] && [[ "$RUN" > "$BUILT" ]] && [ "$HEALTH" = "GREEN" ]; then
+            echo "build=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "build=false" >> "$GITHUB_OUTPUT"
+            echo "Nothing new from a healthy run; the published pages stay."
+          fi
+
+      - uses: actions/checkout@v5
+        if: steps.gate.outputs.build == 'true'
+        with:
+          repository: ddvanlith/tekoha
+          ssh-key: ${{ secrets.TEKOHA_CODE_KEY }}
+          persist-credentials: false
+          path: code
+
+      - uses: actions/setup-node@v5
+        if: steps.gate.outputs.build == 'true'
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: code/package-lock.json
+
+      - name: Install
+        if: steps.gate.outputs.build == 'true'
+        working-directory: code
+        run: npm ci --no-audit --no-fund
+
+      # The builder's own guards stand: it refuses to clear a directory it did not make, and it fails
+      # rather than publish when the page cap would leave a seen listing with an ask without a page.
+      - name: Build property pages
+        if: steps.gate.outputs.build == 'true'
+        working-directory: code
+        env:
+          DATABASE_URL: ${{ secrets.READONLY_DATABASE_URL }}
+          PAGES_DIR: /tmp/pages
+        run: |
+          if [ -z "$DATABASE_URL" ]; then echo "::error::READONLY_DATABASE_URL is not set"; exit 1; fi
+          node pipeline/property-pages.mjs 2>&1 | sed -E -u 's#postgres(ql)?://[^[:space:]]*#[connection string]#g; s/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/[email]/g; s/\+?[0-9]([ .()-]{0,2}[0-9]){8,}/[number]/g'
+
+      # Nothing is cloned: each run is one orphan commit force-pushed to gh-pages, so the repo never holds
+      # more than the latest build.
+      - name: Publish to gh-pages
+        if: steps.gate.outputs.build == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cd /tmp/pages
+          rm -f .tekoha-pages
+          git init -q -b gh-pages
+          git config user.name "tekoha-pipeline" && git config user.email "pipeline@tekoha.local"
+          git add -A
+          git commit -q -m "Property pages $(date -u +%F)"
+          git push -q --force "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" gh-pages
+          echo "published $(git ls-files | wc -l) files, $(du -sh --exclude=.git . | cut -f1)"
