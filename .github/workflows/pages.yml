@@ -85,6 +85,19 @@ jobs:
           if [ -z "$DATABASE_URL" ]; then echo "::error::READONLY_DATABASE_URL is not set"; exit 1; fi
           node pipeline/property-pages.mjs 2>&1 | sed -E -u 's#postgres(ql)?://[^[:space:]]*#[connection string]#g; s/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/[email]/g; s/\+?[0-9]([ .()-]{0,2}[0-9]){8,}/[number]/g'
 
+      # The app prototype (pipeline/build-app.mjs, docs/prototype-build.md in the private repo): Buscar, Oferta and
+      # Mercado at /app/, its index and detail files written beside the pages from the same read-only connection. A
+      # failed app build removes its half-written folder and the pages publish without it.
+      - name: Build app prototype
+        if: steps.gate.outputs.build == 'true'
+        working-directory: code
+        env:
+          DATABASE_URL: ${{ secrets.READONLY_DATABASE_URL }}
+          SITE_DIR: /tmp/pages
+        run: |
+          node pipeline/build-app.mjs 2>&1 | sed -E -u 's#postgres(ql)?://[^[:space:]]*#[connection string]#g; s/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/[email]/g; s/\+?[0-9]([ .()-]{0,2}[0-9]){8,}/[number]/g' \
+            || { rm -rf /tmp/pages/app; echo "::warning::app prototype build failed; the pages publish without /app/"; }
+
       # Nothing is cloned: each run is one orphan commit force-pushed to gh-pages, so the repo never holds
       # more than the latest build.
       - name: Publish to gh-pages
