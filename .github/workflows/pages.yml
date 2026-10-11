@@ -98,6 +98,20 @@ jobs:
           node pipeline/build-app.mjs 2>&1 | sed -E -u 's#postgres(ql)?://[^[:space:]]*#[connection string]#g; s/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/[email]/g; s/\+?[0-9]([ .()-]{0,2}[0-9]){8,}/[number]/g' \
             || { rm -rf /tmp/pages/app; echo "::warning::app prototype build failed; the pages publish without /app/"; }
 
+      # Tekoha Casa, the consumer app (pipeline/build-casa.mjs, docs/consumer-app-build.md in the private repo): /casa/
+      # beside /app/, reading the app's index and detail files and the two casa-only tables the app step wrote. No
+      # database. Its lead form posts with the public anon key once the SUPABASE_ANON_KEY secret exists, and falls back to
+      # an email until then. A failed casa build removes its folder and the rest publishes without it.
+      - name: Build casa app
+        if: steps.gate.outputs.build == 'true'
+        working-directory: code
+        env:
+          SITE_DIR: /tmp/pages
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: |
+          node pipeline/build-casa.mjs 2>&1 | sed -E -u 's#postgres(ql)?://[^[:space:]]*#[connection string]#g; s/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/[email]/g; s/\+?[0-9]([ .()-]{0,2}[0-9]){8,}/[number]/g' \
+            || { rm -rf /tmp/pages/casa; echo "::warning::casa app build failed; the pages publish without /casa/"; }
+
       # Nothing is cloned: each run is one orphan commit force-pushed to gh-pages, so the repo never holds
       # more than the latest build.
       - name: Publish to gh-pages
