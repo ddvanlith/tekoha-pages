@@ -154,6 +154,18 @@ jobs:
           node pipeline/build-compartir.mjs 2>&1 | sed -E -u 's#postgres(ql)?://[^[:space:]]*#[connection string]#g; s/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/[email]/g; s/\+?[0-9]([ .()-]{0,2}[0-9]){8,}/[number]/g' \
             || { rm -rf /tmp/pages/compartir; echo "::warning::Comparti build failed; the pages publish without /compartir/"; }
 
+      # IndexNow (pipeline/indexnow.mjs in the private repo): before the publish, the URLs this build adds, changes
+      # (a new lastmod) or drops, against the live sitemaps; after it, one call per 10,000 of them to api.indexnow.org
+      # (Bing, Yandex and the other engines that read IndexNow), once the site serves the build. The key is public by
+      # design: https://ddvanlith.github.io/<key>.txt, the root user site ddvanlith/ddvanlith.github.io, serves it, and the
+      # repository variable INDEXNOW_KEY holds it. Unset, both steps skip; a failure never stops the publish.
+      - name: IndexNow list
+        if: steps.gate.outputs.build == 'true' && vars.INDEXNOW_KEY != ''
+        continue-on-error: true
+        working-directory: code
+        run: |
+          node pipeline/indexnow.mjs --diff --site /tmp/pages --out /tmp/indexnow-urls.txt 2>&1 | sed -E -u 's#postgres(ql)?://[^[:space:]]*#[connection string]#g; s/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/[email]/g; s/\+?[0-9]([ .()-]{0,2}[0-9]){8,}/[number]/g'
+
       # Nothing is cloned: each run is one orphan commit force-pushed to gh-pages, so the repo never holds
       # more than the latest build.
       - name: Publish to gh-pages
@@ -169,3 +181,13 @@ jobs:
           git commit -q -m "Property pages $(date -u +%F)"
           git push -q --force "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" gh-pages
           echo "published $(git ls-files | wc -l) files, $(du -sh --exclude=.git . | cut -f1)"
+
+      - name: IndexNow submit
+        if: steps.gate.outputs.build == 'true' && vars.INDEXNOW_KEY != ''
+        continue-on-error: true
+        timeout-minutes: 12
+        working-directory: code
+        env:
+          INDEXNOW_KEY: ${{ vars.INDEXNOW_KEY }}
+        run: |
+          node pipeline/indexnow.mjs --submit --in /tmp/indexnow-urls.txt --wait /tmp/pages 2>&1 | sed -E -u 's#postgres(ql)?://[^[:space:]]*#[connection string]#g; s/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/[email]/g; s/\+?[0-9]([ .()-]{0,2}[0-9]){8,}/[number]/g'
