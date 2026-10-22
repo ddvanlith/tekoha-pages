@@ -75,12 +75,17 @@ jobs:
 
       # The builder's own guards stand: it refuses to clear a directory it did not make, and it fails
       # rather than publish when the page cap would leave a seen listing with an ask without a page.
+      # Every page's signup line posts with the public anon key once SUPABASE_ANON_KEY exists (an email
+      # until then), and the repository variable CF_ANALYTICS_TOKEN turns on Cloudflare Web Analytics on
+      # the pages and both apps (docs/leads-and-sponsor.md in the private repo).
       - name: Build property pages
         if: steps.gate.outputs.build == 'true'
         working-directory: code
         env:
           DATABASE_URL: ${{ secrets.READONLY_DATABASE_URL }}
           PAGES_DIR: /tmp/pages
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+          CF_ANALYTICS_TOKEN: ${{ vars.CF_ANALYTICS_TOKEN }}
         run: |
           if [ -z "$DATABASE_URL" ]; then echo "::error::READONLY_DATABASE_URL is not set"; exit 1; fi
           node pipeline/property-pages.mjs 2>&1 | sed -E -u 's#postgres(ql)?://[^[:space:]]*#[connection string]#g; s/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/[email]/g; s/\+?[0-9]([ .()-]{0,2}[0-9]){8,}/[number]/g'
@@ -94,6 +99,7 @@ jobs:
         env:
           DATABASE_URL: ${{ secrets.READONLY_DATABASE_URL }}
           SITE_DIR: /tmp/pages
+          CF_ANALYTICS_TOKEN: ${{ vars.CF_ANALYTICS_TOKEN }}
         run: |
           node pipeline/build-app.mjs 2>&1 | sed -E -u 's#postgres(ql)?://[^[:space:]]*#[connection string]#g; s/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/[email]/g; s/\+?[0-9]([ .()-]{0,2}[0-9]){8,}/[number]/g' \
             || { rm -rf /tmp/pages/app; echo "::warning::app prototype build failed; the pages publish without /app/"; }
@@ -108,6 +114,7 @@ jobs:
         env:
           SITE_DIR: /tmp/pages
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+          CF_ANALYTICS_TOKEN: ${{ vars.CF_ANALYTICS_TOKEN }}
         run: |
           node pipeline/build-casa.mjs 2>&1 | sed -E -u 's#postgres(ql)?://[^[:space:]]*#[connection string]#g; s/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/[email]/g; s/\+?[0-9]([ .()-]{0,2}[0-9]){8,}/[number]/g' \
             || { rm -rf /tmp/pages/casa; echo "::warning::casa app build failed; the pages publish without /casa/"; }
