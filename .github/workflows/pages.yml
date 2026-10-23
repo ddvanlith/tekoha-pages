@@ -73,8 +73,9 @@ jobs:
         working-directory: code
         run: npm ci --no-audit --no-fund
 
-      # The builder's own guards stand: it refuses to clear a directory it did not make, and it fails
-      # rather than publish when the page cap would leave a seen listing with an ask without a page.
+      # The builder refuses to clear a directory it did not make. A size limit never fails it: past the site
+      # budget (450 MB, or the repository variable PAGES_SITE_MB) it leaves out the least useful pages and says
+      # so in the log (pipeline/site-budget.mjs in the private repo); past the page cap it warns.
       # Every page's signup line posts with the public anon key once SUPABASE_ANON_KEY exists; until then it
       # offers an email to the repository variable TEKOHA_PUBLIC_EMAIL, and while that is unset too it says
       # the sign-up opens soon (never the owner's personal address: docs/revenue-plan.md, "Sending account",
@@ -92,6 +93,7 @@ jobs:
           TEKOHA_PUBLIC_EMAIL: ${{ vars.TEKOHA_PUBLIC_EMAIL }}
           CF_ANALYTICS_TOKEN: ${{ vars.CF_ANALYTICS_TOKEN }}
           REPORT_PAYMENT_LINK: ${{ vars.REPORT_PAYMENT_LINK }}
+          PAGES_SITE_MB: ${{ vars.PAGES_SITE_MB }}
         run: |
           if [ -z "$DATABASE_URL" ]; then echo "::error::READONLY_DATABASE_URL is not set"; exit 1; fi
           node pipeline/property-pages.mjs 2>&1 | sed -E -u 's#postgres(ql)?://[^[:space:]]*#[connection string]#g; s/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/[email]/g; s/\+?[0-9]([ .()-]{0,2}[0-9]){8,}/[number]/g'
