@@ -9,11 +9,13 @@ name: tekoha-property-pages
 # The private daily pull publishes between about 14:00 and 19:00 UTC (its cron starts hours late) and a
 # watchdog re-run can land near 22:00, so the build is scheduled after each. A scheduled build runs only
 # when a pipeline run has published since the last build (the last-run.txt it leaves in
-# ddvanlith/tekoha-daily) and that run had no data problem: its health-status.json (pipeline/health-check.mjs
-# in the private repo) marks each RED reason data or not, and only a data problem (a source's freshness or
-# volume, its priced share, a quarantine spike, a dead diff engine) holds the build back; the database-size
-# line or a mail failure never does. Without that file (a run before 2026-10-23) the text status must be
-# GREEN. A manual dispatch always builds; dispatched with as_scheduled it applies the same gate.
+# ddvanlith/tekoha-daily) and that run's health-status.json (pipeline/health-check.mjs in the private repo)
+# lists no RED reason that would put wrong figures on the site: a source's priced share (priced_share:), a
+# partial capture (source_volume:) or a dead diff engine (diff_engine_dead). Every other reason is logged and
+# the build goes on: a stale source (the builder ages its listings out by its own window), a quarantine spike
+# (quarantined rows are outside core.listings_clean), the database size, a mail failure. Without that file
+# (a run before 2026-10-23) the text status must be GREEN. A manual dispatch always builds; dispatched with
+# as_scheduled it applies the same gate.
 #
 # This log is public. The builder prints counts, timings and page paths; its output also passes a filter
 # that masks anything shaped like a connection string, an email address or a phone number.
@@ -24,7 +26,7 @@ on:
   workflow_dispatch:
     inputs:
       as_scheduled:
-        description: "Apply the scheduled build's gate: build only after a new pipeline run without a data problem"
+        description: "Apply the scheduled build's gate: build only after a new pipeline run with nothing that would put wrong figures on the site"
         type: boolean
         default: false
 
@@ -44,30 +46,37 @@ jobs:
         shell: bash
     timeout-minutes: 30
     steps:
-      - name: New pipeline run without a data problem since the last build?
+      - name: New pipeline run with nothing that would put wrong figures on the site?
         id: gate
         env:
           GH_TOKEN: ${{ github.token }}
           AS_SCHEDULED: ${{ inputs.as_scheduled }}
+          # The RED reasons that hold the build; pipeline/health-check.mjs in the private repo marks the same ones.
+          HOLD_CODES: "^(priced_share:|source_volume:|diff_engine_dead$)"
         run: |
           if [ "$GITHUB_EVENT_NAME" != "schedule" ] && [ "$AS_SCHEDULED" != "true" ]; then echo "build=true" >> "$GITHUB_OUTPUT"; exit 0; fi
           RUN=$(gh api "repos/ddvanlith/tekoha-daily/commits?path=last-run.txt&per_page=1" -q '.[0].commit.committer.date // ""')
           BUILT=$(gh api "repos/$GITHUB_REPOSITORY/commits/gh-pages" -q '.commit.committer.date')
           JSON=$(gh api repos/ddvanlith/tekoha-daily/contents/health-status.json -H "Accept: application/vnd.github.raw" 2>/dev/null) || JSON=""
-          if [ -n "$JSON" ] && printf '%s' "$JSON" | jq -e 'has("data_ok")' >/dev/null 2>&1; then
-            DATA_OK=$(printf '%s' "$JSON" | jq -r 'if .data_ok == true then "yes" else "no" end')
-            HEALTH=$(printf '%s' "$JSON" | jq -r '.status + (if (.reasons | length) > 0 then " (" + ([.reasons[] | .code + (if .data then ", data" else "" end)] | join("; ")) + ")" else "" end)')
+          if [ -n "$JSON" ] && printf '%s' "$JSON" | jq -e '.reasons | type == "array"' >/dev/null 2>&1; then
+            HOLD=$(printf '%s' "$JSON" | jq -r --arg re "$HOLD_CODES" '[.reasons[].code | select(test($re))] | join(", ")')
+            LOGGED=$(printf '%s' "$JSON" | jq -r --arg re "$HOLD_CODES" '[.reasons[].code | select(test($re) | not)] | join(", ")')
+            HEALTH="$(printf '%s' "$JSON" | jq -r '.status // "UNKNOWN"')${HOLD:+; holds the build: $HOLD}${LOGGED:+; logged, not holding: $LOGGED}"
+            if [ -z "$HOLD" ]; then BUILD_OK=yes; else BUILD_OK=no; fi
           else
             STATUS=$(gh api repos/ddvanlith/tekoha-daily/contents/health-status.txt -H "Accept: application/vnd.github.raw" 2>/dev/null) || STATUS=UNKNOWN
-            if [ "$STATUS" = "GREEN" ]; then DATA_OK=yes; else DATA_OK=no; fi
+            if [ "$STATUS" = "GREEN" ]; then BUILD_OK=yes; else BUILD_OK=no; fi
             HEALTH="$STATUS (no health-status.json)"
           fi
-          echo "pipeline last published ${RUN:-never}; pages built $BUILT; health $HEALTH; data problem: $([ "$DATA_OK" = yes ] && echo none || echo yes)"
-          if [ -n "$RUN" ] && [[ "$RUN" > "$BUILT" ]] && [ "$DATA_OK" = "yes" ]; then
+          echo "pipeline last published ${RUN:-never}; pages built $BUILT; health $HEALTH"
+          if [ -n "$RUN" ] && [[ "$RUN" > "$BUILT" ]] && [ "$BUILD_OK" = "yes" ]; then
             echo "build=true" >> "$GITHUB_OUTPUT"
+          elif [ "$BUILD_OK" = "yes" ]; then
+            echo "build=false" >> "$GITHUB_OUTPUT"
+            echo "Nothing new since the last build; the published pages stay."
           else
             echo "build=false" >> "$GITHUB_OUTPUT"
-            echo "Nothing new from a run without a data problem; the published pages stay."
+            echo "Held: the newest run has a reason that would put wrong figures on the site; the published pages stay."
           fi
 
       - uses: actions/checkout@v5
