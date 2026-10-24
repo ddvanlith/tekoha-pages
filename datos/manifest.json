@@ -1,0 +1,41 @@
+{
+ "built": "2026-10-24T14:33:31.651Z",
+ "license": "CC BY 4.0",
+ "page": "https://ddvanlith.github.io/tekoha-pages/datos/",
+ "months": [
+  {
+   "month": "2026-10",
+   "built": "2026-10-24T14:33:31.651Z",
+   "files": [
+    {
+     "name": "pedidos-2026-10.csv",
+     "set": "pedidos",
+     "rows": 467,
+     "bytes": 36526
+    },
+    {
+     "name": "cierres-2026-10.csv",
+     "set": "cierres",
+     "rows": 51,
+     "bytes": 3448
+    },
+    {
+     "name": "fiscal-zonas-2026-10.csv",
+     "set": "fiscal",
+     "rows": 27,
+     "bytes": 1834
+    }
+   ]
+  }
+ ],
+ "series": [
+  {
+   "name": "transferencias-registro.csv",
+   "set": "transferencias",
+   "rows": 31384,
+   "bytes": 1492250,
+   "first": "2013-01",
+   "last": "2025-10"
+  }
+ ]
+}

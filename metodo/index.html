@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nota de método: cómo mide Tekoha los precios de cada propiedad | Tekoha</title>
+<meta name="description" content="Precios pedidos y cierres reportados, un inmueble por página, la Estimación Tekoha con su error medido y las reglas de confianza y de oferta. En español y en inglés.">
+<link rel="canonical" href="https://ddvanlith.github.io/tekoha-pages/metodo/">
+<link rel="icon" href="../a/icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Instrument+Sans:wght@400;600;700&family=Martian+Mono:wght@400;600&display=swap" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="../a/p.css">
+</head>
+<body>
+<header class="bar"><div class="wrap"><a class="mark" href="../index.html">Tekoha<b>Propiedades</b></a><nav class="nav"><a href="/tekoha-daily/">Brief</a><a href="/tekoha-daily/dashboard/">Tablero</a><a href="../index.html">Propiedades</a><a href="../metodo/">Método</a></nav></div></header>
+<main class="wrap">
+<section class="hero"><div class="crumbs"><a href="../index.html">Propiedades</a> / Método</div>
+<h1>Cómo medimos cada cifra</h1>
+<p class="status">Qué es un precio pedido y qué es un cierre, cuándo dos avisos son el mismo inmueble y cuánto se equivoca la estimación. Cada página de propiedad remite a esta nota.</p>
+<p class="sub"><span lang="en">How every figure on these pages is measured; in English below.</span></p></section>
+<section class="panel method" id="metodo"><h2>Nota de método</h2>
+<p>Precios de oferta (ASKING) salvo donde se marcan cierres (CLOSED). Los cierres los reporta el corredor, de una sola red, RE/MAX, y no son un registro: Paraguay no publica precios de venta y el de la escritura no es un precio de mercado. El historial empieza con nuestra captura diaria, el 23 de agosto de 2026; los precios de InfoCasas los leemos desde el 21 de septiembre, y antes de esa fecha, donde la captura guardó la cifra en USD que mostraba el portal, va esa cifra, como la da el portal. Cada precio va en la moneda en que se publicó; donde un bloque pasa guaraníes a dólares, dice a qué tasa SET.</p>
+<p>Cierre contra pedido: contra el último pedido en la misma moneda. Un cierre pactado en otra moneda que su pedido no lleva porcentaje, porque pasado a dólares mide sobre todo el tipo de cambio del corredor; se muestran los dos precios, cada uno en su moneda. Al precio pedido: un cierre idéntico al pedido. CHECK: fuera de 0.4 a 1.6 veces el pedido. Un recorte de 90% o más o una suba de 900% o más es una corrección de carga: no cuenta, y la línea del precio no la dibuja. Activo: visto en los últimos 7 días (14 en InfoCasas), la misma regla del tablero. Avisos de un mismo inmueble comparten página solo si la resolución de entidades los une. Un punto a más de 1 km de su departamento no se usa.</p>
+<p>La estimación Tekoha es la única cifra modelada: marcada ESTIMATE, con su rango del 80%, la ubicación que usó y el error medido de su segmento. No mira el precio pedido. La página compara el pedido con la estimación solo si el pedido y la superficie son plausibles para su tipo y su departamento y la estimación usó la ubicación exacta del aviso; si no, lo dice y no compara. Todo lo demás es medido, no modelado.</p>
+<p>Antes de ofertar: la confianza en el aviso (regla trust-v1) y el rango de oferta son reglas escritas sobre cifras medidas, no modelos. La confianza parte de 50 y cada línea suma o resta a la vista; alta desde 70, media de 45 a 69, baja por debajo de 45; un cierre reportado o un aviso inactivo no se puntúa. Rango de oferta: el pedido con la rebaja de los cierres de su tipo en su departamento (misma moneda, mínimo 30), entre su percentil 25 y su mediana; el percentil 10 si lleva más días publicado que el 75% de su tipo o tiene dos recortes o más; acotado por el rango del 80% de la estimación cuando esta se compara con el pedido; sin rango si la confianza es baja o el pedido no es plausible.</p></section>
+<section class="panel method" lang="en"><h2>Method note</h2>
+<p>Asking prices (ASKING) except where closes are marked (CLOSED). Closes are reported by the broker, from a single network, RE/MAX, and they are not a registry: Paraguay does not publish sale prices, and the price in a deed is not a market price. The history starts with our daily capture on 23 August 2026; InfoCasas prices are read from 21 September, and before that date, where the capture kept the dollar figure the portal showed, that figure is shown as the portal gives it. Every price is in the currency it was published in; where a block turns guaraníes into dollars, it says at which SET rate.</p>
+<p>Close against ask: against the last ask in the same currency. A close settled in another currency than its ask carries no percentage, because in dollars it mostly measures the broker's exchange rate; both prices are shown, each in its own currency. At the asking price: a close identical to the ask. CHECK: outside 0.4 to 1.6 times the ask. A cut of 90% or more or a rise of 900% or more is an entry correction: it does not count, and the price line does not draw it. Active: seen in the last 7 days (14 for InfoCasas), the dashboard's rule. Listings of one property share a page only when entity resolution joins them. A point more than 1 km outside its department is not used.</p>
+<p>The Tekoha estimate is the only modelled figure: marked ESTIMATE, with its 80% range, the location it used and its segment's measured error. It does not look at the asking price. A page sets the ask against the estimate only when the ask and the area are plausible for its kind and department and the estimate used the listing's exact location; otherwise it says so and does not compare. Everything else is measured, not modelled.</p>
+<p>Before you offer: the listing's trust (rule trust-v1) and the offer range are written rules over measured figures, not models. Trust starts at 50 and each line adds or subtracts in plain view; high from 70, medium from 45 to 69, low below 45; a reported close or an inactive listing is not scored. Offer range: the ask less the discount of the closes of its kind in its department (same currency, at least 30), between their 25th percentile and their median; the 10th percentile when it has been listed longer than 75% of its kind or has two cuts or more; bounded by the estimate's 80% range when the page compares the two; no range when trust is low or the ask is not plausible.</p>
+</section>
+</main>
+<div class="nl" id="nl"></div><script src="../a/site.js" defer></script>
+<footer>TEKOHA &middot; precios de oferta salvo cierres marcados &middot; medido, no modelado, salvo la estimación marcada</footer>
+</body>
+</html>

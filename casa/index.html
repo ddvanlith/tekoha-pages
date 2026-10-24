@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="es" data-view="buscar" data-pre="on">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tekoha Casa: casas en venta y alquiler en Asunción y Central</title>
+<meta name="description" content="Casas, departamentos y terrenos en venta y en alquiler en Asunción y Central, cada casa una vez, con lo que se espera que cierre, cuánto se negocia en la zona y si el aviso es confiable.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Tekoha Casa">
+<meta property="og:locale" content="es_PY">
+<meta property="og:title" content="Tekoha Casa: casas en venta y alquiler en Asunción y Central">
+<meta property="og:description" content="Cada casa con lo que se espera que cierre, si el aviso es confiable y qué ofrecer.">
+<meta property="og:url" content="https://ddvanlith.github.io/tekoha-pages/casa/">
+<meta property="og:image" content="https://ddvanlith.github.io/tekoha-pages/casa/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Tekoha Casa: casas en venta y alquiler en Asunción y Central">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%23a97e2f'/%3E%3Cpath d='M3 8.2 8 4l5 4.2V13H9.6v-3H6.4v3H3z' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://cdn.gryphtech.com">
+<link rel="preconnect" href="https://d2draqy5xvb9r4.cloudfront.net">
+<link rel="preconnect" href="https://cdn2.infocasas.com.uy">
+<link rel="preload" href="../app/data/casa.json" as="fetch" crossorigin="anonymous">
+<link rel="modulepreload" href="app.js?v=e0881558d9">
+<link rel="modulepreload" href="render.js?v=e0881558d9">
+<link rel="modulepreload" href="strings-es.js?v=e0881558d9">
+<link rel="modulepreload" href="config.js?v=e0881558d9">
+<link rel="modulepreload" href="capture.js?v=e0881558d9">
+<style>
+:root{--bg:#fff;--ink:#1d1a16;--ink-2:#4f463b;--ink-3:#6f6556;--line:#e7e1d7;--panel:#f8f5ef;--panel-2:#f0ebe2;--gold:#a97e2f;--gold-ink:#7a5a1b;--ok:#1f6a45;--warn:#9c4315;
+--sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;color-scheme:light}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.45 var(--sans);-webkit-text-size-adjust:100%}
+body{overflow-x:hidden}
+a{color:var(--gold-ink)}
+button,input,select,textarea{font:inherit;color:inherit}
+[hidden]{display:none!important}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.skip{position:absolute;left:-999px;top:0;background:#fff;padding:8px 12px;z-index:50}.skip:focus{left:8px}
+.top{display:flex;align-items:center;gap:4px;max-width:1120px;margin:0 auto;padding:6px 12px 6px 16px;min-height:60px}
+.brand{display:flex;align-items:center;gap:9px;margin-right:auto;color:var(--ink);text-decoration:none;font-weight:800;font-size:20px;letter-spacing:-.01em;min-height:44px}
+.brand i{position:relative;width:28px;height:28px;border-radius:7px;background:var(--gold);flex:none}
+.brand i::before{content:"";position:absolute;left:6px;top:6px;border:8px solid transparent;border-bottom:7px solid #fff;border-top:0}
+.brand i::after{content:"";position:absolute;left:8px;top:13px;width:12px;height:9px;background:#fff}
+.nav{display:flex;align-items:center}
+.nav a,.nav button{display:inline-flex;align-items:center;gap:6px;min-height:44px;min-width:44px;justify-content:center;padding:0 9px;border:0;background:none;color:var(--ink-2);font-size:16px;text-decoration:none;cursor:pointer;border-radius:10px}
+.nav a[aria-current=page]{color:var(--ink);font-weight:700}
+.nav .lang{border:1px solid var(--line);font-weight:700;font-size:14px;letter-spacing:.04em}
+.nav .sv b{font-weight:700;color:var(--gold-ink)}
+main{max-width:1120px;margin:0 auto;padding:0 16px 48px}
+.view{display:none}
+html[data-view=buscar] #v-buscar,html[data-view=casa] #v-casa,html[data-view=barrio] #v-barrio,html[data-view=vender] #v-vender,html[data-view=guardados] #v-guardados,html[data-view=informe] #v-informe{display:block}
+.stale{background:#fff4e0;color:#6b4513;padding:8px 16px;font-size:15px}
+h1{font-size:28px;line-height:1.15;letter-spacing:-.02em;margin:4px 0 12px}
+h2{font-size:22px;line-height:1.2;letter-spacing:-.01em;margin:0 0 10px}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:4px;margin:0 0 12px;background:var(--panel-2);border-radius:12px}
+.seg button{min-height:44px;border:0;border-radius:9px;background:transparent;color:var(--ink-2);font-weight:700;cursor:pointer}
+.seg button[aria-pressed=true]{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(30,20,10,.14)}
+.fld{display:block;position:relative;margin:0 0 10px}
+.sr{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;padding:0}
+.bud .inp{padding-right:52px}
+.bud .gs{position:absolute;right:48px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--ink-3);pointer-events:none;white-space:nowrap}
+.fld>span,.lab{display:block;margin:0 0 5px;font-size:16px;font-weight:700;color:var(--ink-2)}
+.inp{width:100%;min-height:48px;padding:10px 12px;border:1px solid #c9bfb0;border-radius:10px;background:#fff;font-size:18px}
+.inp:focus{border-color:var(--gold);outline:2px solid var(--gold);outline-offset:0}
+.inpw{position:relative}
+.clr{position:absolute;right:2px;top:2px;width:44px;height:44px;border:0;background:none;color:var(--ink-3);cursor:pointer;font-size:22px;line-height:1}
+.hint{min-height:22px;margin:4px 0 0;font-size:15px;color:var(--ink-3)}
+.sugg{position:absolute;left:0;right:0;top:100%;z-index:30;margin:4px 0 0;padding:4px;list-style:none;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 30px rgba(30,20,10,.16);max-height:min(360px,55vh);overflow-y:auto}
+.sugg li{display:flex;justify-content:space-between;gap:10px;align-items:center;min-height:44px;padding:6px 10px;border-radius:8px;cursor:pointer}
+.sugg li small{color:var(--ink-3);font-size:14px;white-space:nowrap}
+.sugg li.on,.sugg li:hover{background:var(--panel-2)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 10px}
+.chip{min-height:44px;padding:0 15px;border:1px solid #c9bfb0;border-radius:22px;background:#fff;color:var(--ink);font-size:16px;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}
+.note{margin:-4px 0 12px;font-size:15px;color:var(--ink-3)}
+.bhead{margin:0 0 12px}.bhead h1{margin-bottom:4px}
+.sub{margin:0;font-size:17px;line-height:1.35;color:var(--ink-2)}
+.frow2 .chips{margin:8px 0 6px}
+.beds{align-items:center}
+.clab{font-size:16px;font-weight:700;color:var(--ink-2);margin-right:2px}
+.cutl{margin:2px 0 0;padding-left:20px;font-size:16px;color:var(--ink-2)}
+.cutl li{margin:0 0 2px}
+.tap{display:inline-flex;align-items:center;min-height:44px}
+.mlist{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0 16px}
+.mlist a{display:flex;align-items:center;min-height:44px}
+.rhead{display:flex;flex-wrap:wrap;align-items:center;gap:8px;min-height:96px;padding:10px 0 10px;border-top:1px solid var(--line)}
+#count{flex:1 1 100%;margin:0;font-size:18px;font-weight:700}
+#count small{display:block;font-weight:400;font-size:15px;color:var(--ink-3)}
+.rctl{display:flex;gap:8px;flex:1 1 100%}
+.rctl select{flex:1 1 auto;min-width:0;min-height:44px;border:1px solid #c9bfb0;border-radius:10px;background:#fff;padding:0 10px;font-size:16px}
+.zlink{display:flex;align-items:center;min-height:44px;margin:0 0 8px;font-size:16px}
+.cards{display:grid;grid-template-columns:1fr;gap:16px}
+@media (min-width:720px){.cards{grid-template-columns:1fr 1fr}}
+@media (min-width:1040px){.cards{grid-template-columns:1fr 1fr 1fr}}
+.card{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:14px;background:#fff}
+.cl{display:block;color:inherit;text-decoration:none}
+.ph{position:relative;margin:0;aspect-ratio:4/3;overflow:hidden;background:var(--panel-2)}
+.ph img{display:block;width:100%;height:100%;object-fit:cover}
+.phx{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--ink-3);font-size:15px}
+.phx i{position:relative;width:46px;height:38px}
+.phx i::before{content:"";position:absolute;left:3px;top:0;border:20px solid transparent;border-bottom:16px solid #cfc5b5;border-top:0}
+.phx i::after{content:"";position:absolute;left:9px;top:16px;width:28px;height:22px;background:#cfc5b5}
+.noimg img{display:none}.noimg .phx{display:flex}
+.cb{min-height:178px;padding:10px 14px 12px}
+.cb p{margin:0}
+.pr{font-size:23px;font-weight:800;letter-spacing:-.01em;line-height:1.25}
+.po,.l6{font-size:15px;color:var(--ink-3)}
+.fa{margin-top:4px;font-size:18px}
+.pl{font-size:16px;color:var(--ink-2)}
+.l5{margin-top:4px;font-size:16px}
+.muted{color:var(--ink-3)}
+.ok{color:var(--ok);font-weight:700;white-space:nowrap}
+.ok::before{content:"";display:inline-block;width:6px;height:12px;margin:0 9px 0 3px;border:solid var(--ok);border-width:0 3px 3px 0;transform:translateY(-2px) rotate(45deg)}
+.doubt{color:var(--warn);font-weight:700}
+.heart{position:absolute;top:8px;right:8px;display:flex;align-items:center;justify-content:center;width:44px;height:44px;border:0;border-radius:50%;background:rgba(255,255,255,.94);color:var(--ink);cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.18)}
+.heart[aria-pressed=true]{color:#b3261e}.heart[aria-pressed=true] path{fill:currentColor}
+.sk .ph{background:var(--panel-2)}.sk .cb p{height:18px;margin:8px 0;border-radius:6px;background:var(--panel-2)}.sk .cb p:first-child{width:55%;height:24px}.sk .cb p:nth-child(2){width:80%}.sk .cb p:nth-child(3){width:65%}
+#cards .pre{display:contents}html[data-pre=off] #cards .pre{display:none}
+#cards .skel{display:none}html[data-pre=off] #cards .skel{display:contents}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 18px;border:1px solid #c9bfb0;border-radius:12px;background:#fff;color:var(--ink);font-weight:700;font-size:17px;text-decoration:none;cursor:pointer;text-align:center}
+.btn.pri{background:var(--gold-ink);border-color:var(--gold-ink);color:#fff}
+.btn.wide{width:100%}
+.more{display:flex;margin:18px auto 0}
+.empty{padding:16px;border:1px dashed #c9bfb0;border-radius:14px;background:var(--panel)}
+.empty p{margin:0 0 12px}.empty .btn{margin:0 8px 8px 0}
+.lfoot{margin-top:28px;padding-top:14px;border-top:1px solid var(--line);font-size:15px;color:var(--ink-3)}
+.lfoot p{margin:0 0 8px}
+.lfoot a{display:inline-flex;align-items:center;min-height:44px;margin-right:16px}
+#mapbox{height:58vh;height:58dvh;min-height:300px;margin:0 0 14px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--panel-2)}
+.mpin span{position:absolute;transform:translate(-50%,-50%);display:block;width:14px;height:14px;border-radius:50%;background:var(--gold-ink);border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.35);font-size:0;cursor:pointer}
+.z15 .mpin span{width:auto;height:auto;padding:2px 8px;border-radius:12px;font:700 13px/1.35 var(--sans);color:#fff;white-space:nowrap}
+.mclu span{display:flex;align-items:center;justify-content:center;width:100%;height:100%;border-radius:50%;background:rgba(122,90,27,.92);color:#fff;font:700 13px var(--sans);border:2px solid #fff;box-shadow:0 0 0 4px rgba(169,126,47,.25)}
+/* La casa */
+.otop{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:0 0 8px}
+.otop a,.otop button{min-height:44px}
+.otop>a{display:inline-flex;align-items:center;padding-right:12px;font-size:17px}
+.gal{position:relative;margin:0 -16px;}
+.gal ul{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;margin:0;padding:0;list-style:none;scrollbar-width:none}
+.gal ul::-webkit-scrollbar{display:none}
+.gal li{flex:0 0 100%;scroll-snap-align:start}
+.gal .ph{border-radius:0}
+.dots{position:absolute;left:0;right:0;bottom:10px;display:flex;justify-content:center;gap:7px;pointer-events:none}
+.dots i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.6);box-shadow:0 0 2px rgba(0,0,0,.4)}.dots i.on{background:#fff}
+.gcap{margin:6px 0 0;font-size:14px;color:var(--ink-3)}
+@media (min-width:720px){.gal{margin:0}.gal .ph{border-radius:14px}.gal{max-width:720px}}
+.head{margin:12px 0 0}
+.head p{margin:0 0 2px}
+.head .pr{font-size:30px}
+.head .po{font-size:17px}
+.head .fa{font-size:19px}
+.lines{margin:8px 0 0;font-size:17px}
+.lines p{margin:0 0 4px}
+.acts{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+.acts .btn{flex:1 1 200px}
+.sec{margin:22px 0 0;padding:18px 0 0;border-top:1px solid var(--line)}
+.sec p{margin:0 0 10px}
+.lead1{font-size:19px}
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:10px 12px;margin:0 0 12px}
+.calc label span{display:block;font-size:15px;font-weight:700;color:var(--ink-2);margin:0 0 4px}
+.calc small{display:block;font-size:14px;color:var(--ink-3);font-weight:400}
+.cuota{font-size:21px;font-weight:800;margin:4px 0 2px}
+.qs{margin:0 0 12px;padding:12px 14px;border-radius:12px;background:var(--panel);font-size:17px;white-space:pre-line}
+.tbl{overflow-x:auto;margin:0 0 10px}
+table{width:100%;border-collapse:collapse;font-size:16px;font-variant-numeric:tabular-nums}
+th,td{padding:8px 6px;text-align:left;border-bottom:1px solid var(--line)}
+th{font-size:14px;color:var(--ink-3);font-weight:700}
+td.n,th.n{text-align:right}
+.like .card{display:grid;grid-template-columns:38% 1fr}
+.like .card .cl{display:contents}
+.like .card .ph{aspect-ratio:auto;min-height:100%}
+.like .card .cb{min-height:0;padding:10px 12px}
+.like .card .pr{font-size:19px}.like .card .po,.like .card .l6{display:none}
+.like .card .heart{top:6px;right:auto;left:6px}
+.like .cards{gap:12px}
+@media (min-width:720px){.like .cards{grid-template-columns:1fr}}
+details.how{margin:22px 0 0;padding:14px 0 0;border-top:1px solid var(--line)}
+details.how summary{min-height:44px;display:flex;align-items:center;font-weight:700;font-size:19px;cursor:pointer}
+details.how p,details.how li{font-size:15px;color:var(--ink-2)}
+details.how ul{padding-left:18px}
+/* El barrio, Mi casa */
+.ktabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.zl p{font-size:19px;margin:0 0 14px}
+.res{margin:16px 0 0;padding:16px;border-radius:14px;background:var(--panel)}
+.res .big{font-size:24px;font-weight:800;line-height:1.25;margin:0 0 8px}
+.fb{margin:0 0 10px;font-size:16px;color:var(--warn)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+/* Lead dialog */
+dialog{width:min(520px,calc(100vw - 24px));max-height:calc(100dvh - 24px);border:0;border-radius:16px;padding:18px 16px;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+dialog::backdrop{background:rgba(29,26,22,.45)}
+dialog h2{margin-right:44px}
+.x{position:absolute;top:10px;right:10px;width:44px;height:44px;border:0;background:none;font-size:26px;cursor:pointer;color:var(--ink-2)}
+.test{display:inline-block;margin:0 0 10px;padding:3px 9px;border-radius:8px;background:#fff4e0;color:#6b4513;font-size:14px;font-weight:700}
+.msg{min-height:24px;margin:8px 0 0;font-size:16px}
+.msg.okm{color:var(--ok)}.msg.bad{color:var(--warn)}
+.hp{position:absolute;left:-5000px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);padding:10px 16px;border-radius:10px;background:var(--ink);color:#fff;font-size:16px;z-index:60}
+/* Footer signup (signup.js): the height is held so the line does not push anything when it is drawn. */
+.nlf{max-width:1120px;min-height:132px;margin:0 auto;padding:18px 16px 32px;border-top:1px solid var(--line);font-size:16px;color:var(--ink-2)}
+.nlf p{margin:0}.nlf a{display:inline-flex;align-items:center;min-height:44px}
+.nlf label{display:block;margin:0 0 8px;font-weight:700;color:var(--ink)}
+.nlr{display:flex;flex-wrap:wrap;gap:8px}.nlr .inp{flex:1 1 160px;width:auto;min-width:0}.nlr .btn{flex:0 0 auto}
+.nlf .msg{display:block}
+@media (min-width:720px){h1{font-size:34px}.rctl{flex:0 0 auto}#count{flex:1 1 auto}.formrow{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}
+  .rhead{min-height:64px}.frow2{display:flex;flex-wrap:wrap;align-items:center;gap:0 28px}}
+/* A laptop: the title and Comprar/Alquilar on one row, the budget chips beside the budget, La casa in two columns. */
+@media (min-width:900px){
+  .btop{display:flex;align-items:flex-end;justify-content:space-between;gap:24px}
+  .btop .bhead{flex:1 1 auto}.btop .seg{flex:0 0 340px}
+  .formrow .fld:last-child{display:flex;flex-wrap:wrap;align-items:center;gap:0 12px}
+  .formrow .fld:last-child .inpw{flex:1 1 220px}
+  #buds{margin:0;flex:0 0 auto}
+  .cgrid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:0 36px;align-items:start}
+  .cl2>.sec:first-child{margin-top:4px;border-top:0;padding-top:0}
+  .cgrid .gal{max-width:none}
+}
+</style>
+<script>
+// The view and the language are known before the first paint, so nothing jumps when the script starts. The list built
+// into this page is the default search in Spanish; any other search hides it until the script draws its own.
+(function () {
+  var h = location.hash, v = /^#\/?casa\//.test(h) ? "casa" : /^#\/?barrio/.test(h) ? "barrio" : /^#\/?vender/.test(h) ? "vender" : /^#\/?guardados/.test(h) ? "guardados" : /^#\/?informe/.test(h) ? "informe" : "buscar";
+  var l = "es";
+  try { l = localStorage.getItem("casa-lang") === "en" ? "en" : "es"; } catch (e) {}
+  var d = document.documentElement, q = (h.split("?")[1] || "");
+  d.dataset.view = v;
+  d.dataset.pre = v === "buscar" && l === "es" && !/(^|&)(o|q|p|k|b|s|map)=/.test(q) ? "on" : "off";
+  if (l === "en") d.lang = "en";
+  // The built-in list's images are lazy, so a page opened on another screen does not download them; when the list shows,
+  // its first photo starts here, before the body is read.
+  var fp = "https://cdn.gryphtech.com/userimages/114/L_0c578fa3-792b-4a69-a80e-4fc8dac3513b.jpg";
+  if (d.dataset.pre === "on" && fp) { var ln = document.createElement("link"); ln.rel = "preload"; ln.as = "image"; ln.href = fp; ln.setAttribute("fetchpriority", "high"); ln.referrerPolicy = "no-referrer"; document.head.appendChild(ln); }
+  // A home opened cold starts its detail file now, beside the scripts, and preloads its first photo as soon as the file is
+  // in, so the photo is not three requests away. The InfoCasas rendition repeats photoSrc in render.js (card size, which the
+  // gallery's first photo uses).
+  var m = /^#\/?casa\/(\d+)/.exec(h);
+  if (m) {
+    var dp = fetch("../app/l/" + m[1] + ".json").then(function (r) { if (!r.ok) { var e = new Error(String(r.status)); e.status = r.status; throw e; } return r.json(); });
+    window.__casaDetail = { id: m[1], p: dp };
+    dp.then(function (x) {
+      var u = x && x.photos && x.photos[0];
+      if (!u) return;
+      var ic = /^https:\/\/cdn[12]\.infocasas\.com\.uy\/repo\/img\/(?!th\.)([^\/?#]+)$/.exec(u);
+      if (ic) u = "https://cdn2.infocasas.com.uy/repo/img/th.outside600x450." + ic[1];
+      var pl = document.createElement("link"); pl.rel = "preload"; pl.as = "image"; pl.href = u; pl.setAttribute("fetchpriority", "high"); pl.referrerPolicy = "no-referrer"; document.head.appendChild(pl);
+    }, function () {});
+  }
+})();
+// A photo the portal does not serve falls back to its original link once, then to the placeholder.
+function casaImgErr(img) {
+  var o = img.getAttribute("data-orig");
+  if (o && img.src !== o && !img.dataset.tried) { img.dataset.tried = "1"; img.src = o; return; }
+  if (img.parentNode) img.parentNode.classList.add("noimg");
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Ir al contenido</a>
+<header class="top" id="top">
+  <a class="brand" href="#/buscar" id="brand"><i aria-hidden="true"></i><span>Tekoha Casa</span></a>
+  <nav class="nav" id="nav">
+    <a href="#/vender" data-nav="vender">Vender</a>
+    <a href="#/guardados" class="sv" data-nav="guardados" aria-label="Guardados"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.7c0 5.6-7.5 10.2-7.5 10.2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><b id="nsaved"></b></a>
+    <button class="lang" type="button" id="lang" aria-label="Read in English">EN</button>
+  </nav>
+</header>
+<div class="stale" id="stale" hidden></div>
+<main id="main">
+<section class="view" id="v-buscar" aria-labelledby="h-buscar"><div class="btop"><div class="bhead"><h1 id="h-buscar">Encontrá tu casa</h1><p class="sub">Cada casa con lo que se espera que cierre, si el aviso es confiable y qué ofrecer.</p></div><div class="seg" role="group" aria-label="Comprar, Alquilar"><button type="button" data-op="sale" aria-pressed="true">Comprar</button><button type="button" data-op="rent" aria-pressed="false">Alquilar</button></div></div><div class="formrow"><div class="fld"><label class="sr" for="where">¿Dónde querés vivir?</label><div class="inpw"><input class="inp" id="where" type="search" autocomplete="off" spellcheck="false" placeholder="¿Dónde querés vivir?" value="" role="combobox" aria-expanded="false" aria-controls="sugg" aria-autocomplete="list"><button class="clr" type="button" id="whereclr" aria-label="Quitar el lugar" hidden>&times;</button></div><ul class="sugg" id="sugg" role="listbox" aria-label="¿Dónde querés vivir?" hidden></ul></div><div class="fld"><label class="sr" for="budget">¿Hasta cuánto? (USD)</label><div class="inpw bud"><input class="inp" id="budget" inputmode="numeric" autocomplete="off" placeholder="¿Hasta cuánto?" value=""><span class="gs" id="budgs" aria-live="polite"></span><button class="clr" type="button" id="budclr" aria-label="Quitar el tope" hidden>&times;</button></div><div class="chips" role="group" aria-label="¿Hasta cuánto?" id="buds"><button class="chip" type="button" data-bud="50000" aria-pressed="false" aria-label="¿Hasta cuánto? USD 50.000">50k</button><button class="chip" type="button" data-bud="100000" aria-pressed="false" aria-label="¿Hasta cuánto? USD 100.000">100k</button><button class="chip" type="button" data-bud="150000" aria-pressed="false" aria-label="¿Hasta cuánto? USD 150.000">150k</button><button class="chip" type="button" data-bud="250000" aria-pressed="false" aria-label="¿Hasta cuánto? USD 250.000">250k</button></div></div></div><div class="frow2"><div class="chips" role="group" aria-label="Tipo" id="kinds"><button class="chip" type="button" data-k="casa" aria-pressed="false">Casa</button><button class="chip" type="button" data-k="departamento" aria-pressed="false">Depto</button><button class="chip" type="button" data-k="terreno" aria-pressed="false">Terreno</button><button class="chip" type="button" data-k="duplex" aria-pressed="false">Dúplex</button></div><div class="chips beds" role="group" aria-labelledby="bedslab" id="beds"><span class="clab" id="bedslab">Dormitorios</span><button class="chip" type="button" data-bd="2" aria-pressed="false" aria-label="2 dormitorios o más">2+</button><button class="chip" type="button" data-bd="3" aria-pressed="false" aria-label="3 dormitorios o más">3+</button><button class="chip" type="button" data-bd="4" aria-pressed="false" aria-label="4 dormitorios o más">4+</button></div></div><div class="rhead"><p id="count" aria-live="polite">13.379 inmuebles en venta en Asunción y Central</p><div class="rctl"><select id="sort" aria-label="Orden"><option value="new" selected>Más nuevas primero</option><option value="price">Menor precio primero</option><option value="size">Más grandes primero</option></select><button class="btn" type="button" id="mapbtn" aria-pressed="false">Mapa</button></div></div><a class="zlink" id="zlink" href="#" hidden></a><div id="mapbox" hidden></div><div class="cards" id="cards"><div class="pre"><article class="card" data-id="7953781"><a class="cl" href="#/casa/7953781" aria-label="Terreno, 294 m2, Gs 175.000.000, Mbokajaty, Ñemby"><figure class="ph"><img src="https://cdn.gryphtech.com/userimages/114/L_0c578fa3-792b-4a69-a80e-4fc8dac3513b.jpg" data-orig="https://cdn.gryphtech.com/userimages/114/L_0c578fa3-792b-4a69-a80e-4fc8dac3513b.jpg" alt="" width="600" height="450" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="casaImgErr(this)"><span class="phx" aria-hidden="true"><i></i>Sin foto</span></figure><div class="cb"><p class="pr">Gs 175.000.000</p><p class="po">USD 30.000</p><p class="fa">Terreno, 294 m2</p><p class="pl">Mbokajaty, Ñemby</p><p class="l5"><span class="ok">Aviso confiable</span></p><p class="l6">Publicado esta semana · 2 avisos</p></div></a><button class="heart" type="button" data-heart="7953781" aria-pressed="false" aria-label="Guardar"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M12 20.5s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.7c0 5.6-7.5 10.2-7.5 10.2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button></article><article class="card" data-id="8066766"><a class="cl" href="#/casa/8066766" aria-label="Depto, 1 dorm., 56 m2, USD 120.000, Mme. Lynch, Asunción"><figure class="ph noimg"><span class="phx" aria-hidden="true"><i></i>Sin foto</span></figure><div class="cb"><p class="pr">USD 120.000</p><p class="po">Gs 692 millones</p><p class="fa">Depto, 1 dorm., 56 m2</p><p class="pl">Mme. Lynch, Asunción</p><p class="l5">&nbsp;</p><p class="l6">Publicado esta semana · 2 avisos</p></div></a><button class="heart" type="button" data-heart="8066766" aria-pressed="false" aria-label="Guardar"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M12 20.5s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.7c0 5.6-7.5 10.2-7.5 10.2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button></article><article class="card" data-id="8066764"><a class="cl" href="#/casa/8066764" aria-label="Depto, 2 dorm., 110 m2, USD 195.000, Herrera, Asunción"><figure class="ph noimg"><span class="phx" aria-hidden="true"><i></i>Sin foto</span></figure><div class="cb"><p class="pr">USD 195.000</p><p class="po">Gs 1.124 millones</p><p class="fa">Depto, 2 dorm., 110 m2</p><p class="pl">Herrera, Asunción</p><p class="l5">&nbsp;</p><p class="l6">Publicado esta semana</p></div></a><button class="heart" type="button" data-heart="8066764" aria-pressed="false" aria-label="Guardar"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M12 20.5s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.7c0 5.6-7.5 10.2-7.5 10.2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button></article><article class="card" data-id="8066763"><a class="cl" href="#/casa/8066763" aria-label="Casa, 4 dorm., 355 m2, Gs 1.500.000.000, Mcal. López, Asunción"><figure class="ph noimg"><span class="phx" aria-hidden="true"><i></i>Sin foto</span></figure><div class="cb"><p class="pr">Gs 1.500.000.000</p><p class="po">USD 260.000</p><p class="fa">Casa, 4 dorm., 355 m2</p><p class="pl">Mcal. López, Asunción</p><p class="l5">&nbsp;</p><p class="l6">Publicado esta semana</p></div></a><button class="heart" type="button" data-heart="8066763" aria-pressed="false" aria-label="Guardar"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M12 20.5s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.7c0 5.6-7.5 10.2-7.5 10.2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button></article><article class="card" data-id="8039117"><a class="cl" href="#/casa/8039117" aria-label="Casa, 3 dorm., 85 m2, Gs 360.000.000, Rojas Cañada, Capiatá"><figure class="ph noimg"><span class="phx" aria-hidden="true"><i></i>Sin foto</span></figure><div class="cb"><p class="pr">Gs 360.000.000</p><p class="po">USD 62.000</p><p class="fa">Casa, 3 dorm., 85 m2</p><p class="pl">Rojas Cañada, Capiatá</p><p class="l5"><span class="ok">Aviso confiable</span> · Precio dentro de lo esperado</p><p class="l6">Publicado esta semana</p></div></a><button class="heart" type="button" data-heart="8039117" aria-pressed="false" aria-label="Guardar"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M12 20.5s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.7c0 5.6-7.5 10.2-7.5 10.2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button></article><article class="card" data-id="8036169"><a class="cl" href="#/casa/8036169" aria-label="Terreno, 360 m2, USD 23.000, Isla Valle, Areguá"><figure class="ph noimg"><span class="phx" aria-hidden="true"><i></i>Sin foto</span></figure><div class="cb"><p class="pr">USD 23.000</p><p class="po">Gs 133 millones</p><p class="fa">Terreno, 360 m2</p><p class="pl">Isla Valle, Areguá</p><p class="l5">&nbsp;</p><p class="l6">Publicado esta semana</p></div></a><button class="heart" type="button" data-heart="8036169" aria-pressed="false" aria-label="Guardar"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M12 20.5s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.7c0 5.6-7.5 10.2-7.5 10.2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button></article></div><div class="skel"><article class="card sk" aria-hidden="true"><figure class="ph"></figure><div class="cb"><p></p><p></p><p></p></div></article><article class="card sk" aria-hidden="true"><figure class="ph"></figure><div class="cb"><p></p><p></p><p></p></div></article><article class="card sk" aria-hidden="true"><figure class="ph"></figure><div class="cb"><p></p><p></p><p></p></div></article></div></div><button class="btn more" type="button" id="more" hidden></button><footer class="lfoot" id="lfoot"><p>Precios que piden los vendedores en RE/MAX, InfoCasas, uProp y otras inmobiliarias. Cada casa aparece una vez, aunque tenga varios avisos. Datos al 24 oct 2026. Nadie paga por aparecer primero.</p><p>Dejamos afuera 408 avisos: los que ya no vemos publicados, los que figuran como vendidos y los que tienen un precio que no parece real.</p><p><a href="#/vender">¿Vendés? Calculá cuánto vale tu casa</a><a href="../app/">Datos para profesionales</a></p></footer></section>
+<section class="view" id="v-casa" aria-live="polite"></section>
+<section class="view" id="v-barrio"></section>
+<section class="view" id="v-vender"></section>
+<section class="view" id="v-guardados"></section>
+<section class="view" id="v-informe"></section>
+</main>
+<footer class="nlf" id="nlf"></footer>
+<dialog id="lead" aria-labelledby="lead-h"></dialog>
+<script type="module" src="app.js?v=e0881558d9"></script>
+<script type="module" src="signup.js?v=e0881558d9"></script>
+</body>
+</html>

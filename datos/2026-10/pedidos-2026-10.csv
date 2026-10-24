@@ -1,0 +1,468 @@
+﻿fecha,nivel,departamento,ciudad,barrio,operacion,tipo,avisos,mediana_pedido_usd,avisos_con_m2,mediana_usd_m2,base_m2
+2026-10-24,departamento,Alto Paraguay,,,venta,rural,6,,0,,
+2026-10-24,departamento,Alto Paraná,,,venta,casa,224,130057,203,705,construida
+2026-10-24,departamento,Alto Paraná,,,venta,departamento,87,89000,29,1599,construida
+2026-10-24,departamento,Alto Paraná,,,venta,terreno,481,65924,246,84,terreno
+2026-10-24,departamento,Alto Paraná,,,venta,deposito,11,,0,,
+2026-10-24,departamento,Alto Paraná,,,venta,edificio,19,,0,,
+2026-10-24,departamento,Alto Paraná,,,venta,local,24,263288,9,,construida
+2026-10-24,departamento,Alto Paraná,,,venta,otro,54,127500,0,,
+2026-10-24,departamento,Alto Paraná,,,venta,quinta,9,,0,,
+2026-10-24,departamento,Alto Paraná,,,venta,rural,8,,0,,
+2026-10-24,departamento,Alto Paraná,,,alquiler,casa,9,,9,,construida
+2026-10-24,departamento,Alto Paraná,,,alquiler,departamento,7,,4,,construida
+2026-10-24,departamento,Alto Paraná,,,alquiler,terreno,8,,0,,
+2026-10-24,departamento,Alto Paraná,,,alquiler,deposito,6,,3,,construida
+2026-10-24,departamento,Alto Paraná,,,alquiler,oficina,23,2180,5,,construida
+2026-10-24,departamento,Alto Paraná,,,alquiler,otro,12,,3,,construida
+2026-10-24,departamento,Amambay,,,venta,terreno,12,,6,,terreno
+2026-10-24,departamento,Asunción,,,venta,casa,3022,290000,2435,1035,construida
+2026-10-24,departamento,Asunción,,,venta,departamento,4074,111000,2162,1795,construida
+2026-10-24,departamento,Asunción,,,venta,duplex,36,192917,29,1125,construida
+2026-10-24,departamento,Asunción,,,venta,terreno,818,208182,669,385,terreno
+2026-10-24,departamento,Asunción,,,venta,deposito,23,265000,0,,
+2026-10-24,departamento,Asunción,,,venta,edificio,43,354344,0,,
+2026-10-24,departamento,Asunción,,,venta,local,172,296212,83,955,construida
+2026-10-24,departamento,Asunción,,,venta,oficina,85,204390,43,1648,construida
+2026-10-24,departamento,Asunción,,,venta,otro,75,182159,0,,
+2026-10-24,departamento,Asunción,,,venta,rural,11,,0,,
+2026-10-24,departamento,Asunción,,,alquiler,casa,1318,2372,1122,6,construida
+2026-10-24,departamento,Asunción,,,alquiler,departamento,1899,954,1645,13,construida
+2026-10-24,departamento,Asunción,,,alquiler,duplex,7,,5,,construida
+2026-10-24,departamento,Asunción,,,alquiler,terreno,10,,0,,
+2026-10-24,departamento,Asunción,,,alquiler,deposito,5,,1,,construida
+2026-10-24,departamento,Asunción,,,alquiler,local,116,1735,60,9,construida
+2026-10-24,departamento,Asunción,,,alquiler,oficina,68,890,37,9,construida
+2026-10-24,departamento,Asunción,,,alquiler,otro,17,,10,,construida
+2026-10-24,departamento,Boquerón,,,venta,casa,24,73280,19,,construida
+2026-10-24,departamento,Boquerón,,,venta,terreno,117,14274,40,13,terreno
+2026-10-24,departamento,Boquerón,,,venta,rural,6,,0,,
+2026-10-24,departamento,Boquerón,,,alquiler,casa,7,,7,,construida
+2026-10-24,departamento,Boquerón,,,alquiler,local,11,,3,,construida
+2026-10-24,departamento,Boquerón,,,alquiler,oficina,5,,2,,construida
+2026-10-24,departamento,Boquerón,,,alquiler,otro,5,,4,,construida
+2026-10-24,departamento,Caaguazú,,,venta,casa,13,,11,,construida
+2026-10-24,departamento,Caaguazú,,,venta,terreno,43,71129,18,,terreno
+2026-10-24,departamento,Caaguazú,,,venta,rural,6,,0,,
+2026-10-24,departamento,Caazapá,,,venta,terreno,9,,6,,terreno
+2026-10-24,departamento,Caazapá,,,venta,otro,6,,0,,
+2026-10-24,departamento,Canindeyú,,,venta,terreno,12,,9,,terreno
+2026-10-24,departamento,Central,,,venta,casa,3726,104091,2947,751,construida
+2026-10-24,departamento,Central,,,venta,departamento,759,77000,235,1261,construida
+2026-10-24,departamento,Central,,,venta,duplex,186,118490,134,927,construida
+2026-10-24,departamento,Central,,,venta,terreno,3899,65924,2897,87,terreno
+2026-10-24,departamento,Central,,,venta,deposito,62,209483,0,,
+2026-10-24,departamento,Central,,,venta,edificio,28,293125,0,,
+2026-10-24,departamento,Central,,,venta,local,109,180000,56,767,construida
+2026-10-24,departamento,Central,,,venta,otro,111,180317,0,,
+2026-10-24,departamento,Central,,,venta,quinta,30,92815,0,,
+2026-10-24,departamento,Central,,,venta,rural,12,,0,,
+2026-10-24,departamento,Central,,,alquiler,casa,139,694,91,5,construida
+2026-10-24,departamento,Central,,,alquiler,departamento,231,581,80,12,construida
+2026-10-24,departamento,Central,,,alquiler,duplex,20,746,12,,construida
+2026-10-24,departamento,Central,,,alquiler,terreno,31,867,0,,
+2026-10-24,departamento,Central,,,alquiler,deposito,28,746,9,,construida
+2026-10-24,departamento,Central,,,alquiler,local,144,603,81,7,construida
+2026-10-24,departamento,Central,,,alquiler,oficina,11,,6,,construida
+2026-10-24,departamento,Central,,,alquiler,otro,40,304,15,,construida
+2026-10-24,departamento,Concepción,,,venta,casa,6,,6,,construida
+2026-10-24,departamento,Concepción,,,venta,terreno,10,,7,,terreno
+2026-10-24,departamento,Cordillera,,,venta,casa,192,200000,156,883,construida
+2026-10-24,departamento,Cordillera,,,venta,departamento,24,209751,9,,construida
+2026-10-24,departamento,Cordillera,,,venta,terreno,665,47708,370,49,terreno
+2026-10-24,departamento,Cordillera,,,venta,otro,29,137053,0,,
+2026-10-24,departamento,Cordillera,,,venta,quinta,14,,0,,
+2026-10-24,departamento,Cordillera,,,venta,rural,24,422500,0,,
+2026-10-24,departamento,Cordillera,,,alquiler,casa,36,1605,32,6,construida
+2026-10-24,departamento,Cordillera,,,alquiler,local,6,,5,,construida
+2026-10-24,departamento,Guairá,,,venta,terreno,30,25759,23,56,terreno
+2026-10-24,departamento,Itapúa,,,venta,casa,305,131849,267,723,construida
+2026-10-24,departamento,Itapúa,,,venta,departamento,169,90000,40,1237,construida
+2026-10-24,departamento,Itapúa,,,venta,duplex,31,98887,26,721,construida
+2026-10-24,departamento,Itapúa,,,venta,terreno,877,34697,580,42,terreno
+2026-10-24,departamento,Itapúa,,,venta,deposito,13,,0,,
+2026-10-24,departamento,Itapúa,,,venta,edificio,19,,0,,
+2026-10-24,departamento,Itapúa,,,venta,local,30,190000,17,,construida
+2026-10-24,departamento,Itapúa,,,venta,otro,81,150000,0,,
+2026-10-24,departamento,Itapúa,,,venta,quinta,8,,0,,
+2026-10-24,departamento,Itapúa,,,venta,rural,11,,0,,
+2026-10-24,departamento,Itapúa,,,alquiler,casa,26,952,22,4,construida
+2026-10-24,departamento,Itapúa,,,alquiler,departamento,61,538,18,,construida
+2026-10-24,departamento,Itapúa,,,alquiler,duplex,6,,3,,construida
+2026-10-24,departamento,Itapúa,,,alquiler,terreno,14,,0,,
+2026-10-24,departamento,Itapúa,,,alquiler,local,18,,11,,construida
+2026-10-24,departamento,Itapúa,,,alquiler,oficina,6,,1,,construida
+2026-10-24,departamento,Itapúa,,,alquiler,otro,11,,6,,construida
+2026-10-24,departamento,Misiones,,,venta,casa,14,,13,,construida
+2026-10-24,departamento,Misiones,,,venta,terreno,35,38167,27,30,terreno
+2026-10-24,departamento,Misiones,,,venta,rural,5,,0,,
+2026-10-24,departamento,Ñeembucú,,,venta,terreno,11,,5,,terreno
+2026-10-24,departamento,Ñeembucú,,,venta,rural,6,,0,,
+2026-10-24,departamento,Paraguarí,,,venta,casa,18,,13,,construida
+2026-10-24,departamento,Paraguarí,,,venta,terreno,64,46407,40,20,terreno
+2026-10-24,departamento,Paraguarí,,,venta,otro,15,,0,,
+2026-10-24,departamento,Paraguarí,,,venta,quinta,5,,0,,
+2026-10-24,departamento,Paraguarí,,,venta,rural,6,,0,,
+2026-10-24,departamento,Presidente Hayes,,,venta,casa,11,,5,,construida
+2026-10-24,departamento,Presidente Hayes,,,venta,terreno,143,90000,77,130,terreno
+2026-10-24,departamento,Presidente Hayes,,,venta,rural,14,,0,,
+2026-10-24,departamento,San Pedro,,,venta,terreno,27,121440,17,,terreno
+2026-10-24,ciudad,Alto Paraná,Ciudad del Este,,venta,casa,107,138788,98,752,construida
+2026-10-24,ciudad,Alto Paraná,Ciudad del Este,,venta,departamento,75,89000,26,1738,construida
+2026-10-24,ciudad,Alto Paraná,Ciudad del Este,,venta,terreno,181,80000,87,147,terreno
+2026-10-24,ciudad,Alto Paraná,Ciudad del Este,,venta,edificio,13,,0,,
+2026-10-24,ciudad,Alto Paraná,Ciudad del Este,,venta,local,13,,4,,construida
+2026-10-24,ciudad,Alto Paraná,Ciudad del Este,,venta,otro,17,,0,,
+2026-10-24,ciudad,Alto Paraná,Ciudad del Este,,alquiler,oficina,23,2180,5,,construida
+2026-10-24,ciudad,Alto Paraná,Ciudad del Este,,alquiler,otro,6,,1,,construida
+2026-10-24,ciudad,Alto Paraná,Hernandarias,,venta,casa,51,115000,46,589,construida
+2026-10-24,ciudad,Alto Paraná,Hernandarias,,venta,terreno,84,50589,46,70,terreno
+2026-10-24,ciudad,Alto Paraná,Hernandarias,,venta,otro,6,,0,,
+2026-10-24,ciudad,Alto Paraná,Juan Emilio O'leary,,venta,otro,10,,0,,
+2026-10-24,ciudad,Alto Paraná,Minga Guazú,,venta,casa,9,,7,,construida
+2026-10-24,ciudad,Alto Paraná,Minga Guazú,,venta,terreno,90,26023,52,60,terreno
+2026-10-24,ciudad,Alto Paraná,Naranjal,,venta,terreno,5,,3,,terreno
+2026-10-24,ciudad,Alto Paraná,Presidente Franco,,venta,casa,17,,15,,construida
+2026-10-24,ciudad,Alto Paraná,Presidente Franco,,venta,terreno,53,90436,30,123,terreno
+2026-10-24,ciudad,Alto Paraná,Presidente Franco,,venta,otro,6,,0,,
+2026-10-24,ciudad,Alto Paraná,Santa Rita,,venta,casa,27,145000,27,727,construida
+2026-10-24,ciudad,Alto Paraná,Santa Rita,,venta,terreno,43,40000,23,81,terreno
+2026-10-24,ciudad,Alto Paraná,Santa Rita,,venta,deposito,7,,0,,
+2026-10-24,ciudad,Alto Paraná,Santa Rita,,venta,otro,8,,0,,
+2026-10-24,ciudad,Amambay,Pedro Juan Caballero,,venta,terreno,10,,5,,terreno
+2026-10-24,ciudad,Boquerón,Boquerón,,venta,terreno,7,,0,,
+2026-10-24,ciudad,Boquerón,Filadelfia,,venta,casa,14,,13,,construida
+2026-10-24,ciudad,Boquerón,Filadelfia,,venta,terreno,29,34697,12,,terreno
+2026-10-24,ciudad,Boquerón,Filadelfia,,alquiler,casa,5,,5,,construida
+2026-10-24,ciudad,Boquerón,Loma Plata,,venta,casa,8,,5,,construida
+2026-10-24,ciudad,Boquerón,Loma Plata,,venta,terreno,77,9281,25,13,terreno
+2026-10-24,ciudad,Boquerón,Loma Plata,,alquiler,local,9,,3,,construida
+2026-10-24,ciudad,Caaguazú,Caaguazú,,venta,casa,6,,6,,construida
+2026-10-24,ciudad,Caaguazú,Caaguazú,,venta,terreno,16,,7,,terreno
+2026-10-24,ciudad,Caaguazú,Coronel Oviedo,,venta,casa,6,,5,,construida
+2026-10-24,ciudad,Caaguazú,Coronel Oviedo,,venta,terreno,14,,3,,terreno
+2026-10-24,ciudad,Caaguazú,Doctor Juan Manuel Frutos,,venta,terreno,5,,5,,terreno
+2026-10-24,ciudad,Canindeyú,Curuguaty,,venta,terreno,5,,2,,terreno
+2026-10-24,ciudad,Central,Areguá,,venta,casa,159,112765,131,652,construida
+2026-10-24,ciudad,Central,Areguá,,venta,terreno,179,30360,122,41,terreno
+2026-10-24,ciudad,Central,Areguá,,venta,quinta,5,,0,,
+2026-10-24,ciudad,Central,Capiatá,,venta,casa,265,67659,218,609,construida
+2026-10-24,ciudad,Central,Capiatá,,venta,departamento,6,,0,,
+2026-10-24,ciudad,Central,Capiatá,,venta,duplex,5,,4,,construida
+2026-10-24,ciudad,Central,Capiatá,,venta,terreno,250,39902,196,63,terreno
+2026-10-24,ciudad,Central,Capiatá,,venta,deposito,5,,0,,
+2026-10-24,ciudad,Central,Capiatá,,venta,local,14,,9,,construida
+2026-10-24,ciudad,Central,Capiatá,,venta,otro,6,,0,,
+2026-10-24,ciudad,Central,Capiatá,,alquiler,casa,7,,6,,construida
+2026-10-24,ciudad,Central,Capiatá,,alquiler,local,7,,3,,construida
+2026-10-24,ciudad,Central,Central,,venta,casa,22,113546,0,,
+2026-10-24,ciudad,Central,Central,,venta,departamento,17,,12,,construida
+2026-10-24,ciudad,Central,Central,,venta,terreno,29,38167,1,,terreno
+2026-10-24,ciudad,Central,Central,,alquiler,departamento,8,,8,,construida
+2026-10-24,ciudad,Central,Fernando de la Mora,,venta,casa,276,170000,210,857,construida
+2026-10-24,ciudad,Central,Fernando de la Mora,,venta,departamento,154,71055,55,1161,construida
+2026-10-24,ciudad,Central,Fernando de la Mora,,venta,duplex,13,,10,,construida
+2026-10-24,ciudad,Central,Fernando de la Mora,,venta,terreno,186,133584,162,278,terreno
+2026-10-24,ciudad,Central,Fernando de la Mora,,venta,deposito,7,,0,,
+2026-10-24,ciudad,Central,Fernando de la Mora,,venta,edificio,6,,0,,
+2026-10-24,ciudad,Central,Fernando de la Mora,,venta,local,17,,7,,construida
+2026-10-24,ciudad,Central,Fernando de la Mora,,venta,otro,6,,0,,
+2026-10-24,ciudad,Central,Fernando de la Mora,,alquiler,casa,24,954,9,,construida
+2026-10-24,ciudad,Central,Fernando de la Mora,,alquiler,departamento,42,607,12,,construida
+2026-10-24,ciudad,Central,Fernando de la Mora,,alquiler,duplex,6,,3,,construida
+2026-10-24,ciudad,Central,Fernando de la Mora,,alquiler,local,27,729,16,,construida
+2026-10-24,ciudad,Central,Guarambaré,,venta,casa,7,,4,,construida
+2026-10-24,ciudad,Central,Guarambaré,,venta,terreno,38,20818,13,,terreno
+2026-10-24,ciudad,Central,Itá,,venta,casa,62,78068,51,785,construida
+2026-10-24,ciudad,Central,Itá,,venta,terreno,123,57250,99,25,terreno
+2026-10-24,ciudad,Central,Itauguá,,venta,casa,136,81892,119,586,construida
+2026-10-24,ciudad,Central,Itauguá,,venta,terreno,236,34263,158,34,terreno
+2026-10-24,ciudad,Central,Itauguá,,venta,otro,8,,0,,
+2026-10-24,ciudad,Central,Itauguá,,alquiler,casa,8,,7,,construida
+2026-10-24,ciudad,Central,Itauguá,,alquiler,local,7,,4,,construida
+2026-10-24,ciudad,Central,Julián Augusto Saldívar,,venta,casa,64,49443,59,642,construida
+2026-10-24,ciudad,Central,Julián Augusto Saldívar,,venta,terreno,95,21686,78,43,terreno
+2026-10-24,ciudad,Central,Lambaré,,venta,casa,356,164811,271,772,construida
+2026-10-24,ciudad,Central,Lambaré,,venta,departamento,82,88500,37,1246,construida
+2026-10-24,ciudad,Central,Lambaré,,venta,duplex,26,121266,16,,construida
+2026-10-24,ciudad,Central,Lambaré,,venta,terreno,242,95417,194,193,terreno
+2026-10-24,ciudad,Central,Lambaré,,venta,deposito,10,,0,,
+2026-10-24,ciudad,Central,Lambaré,,venta,local,10,,4,,construida
+2026-10-24,ciudad,Central,Lambaré,,venta,otro,6,,0,,
+2026-10-24,ciudad,Central,Lambaré,,alquiler,casa,21,1041,10,,construida
+2026-10-24,ciudad,Central,Lambaré,,alquiler,departamento,40,607,11,,construida
+2026-10-24,ciudad,Central,Lambaré,,alquiler,local,8,,7,,construida
+2026-10-24,ciudad,Central,Limpio,,venta,casa,204,60720,162,674,construida
+2026-10-24,ciudad,Central,Limpio,,venta,departamento,23,64091,11,,construida
+2026-10-24,ciudad,Central,Limpio,,venta,duplex,14,,8,,construida
+2026-10-24,ciudad,Central,Limpio,,venta,terreno,205,36432,142,55,terreno
+2026-10-24,ciudad,Central,Limpio,,venta,otro,6,,0,,
+2026-10-24,ciudad,Central,Luque,,venta,casa,808,112765,607,917,construida
+2026-10-24,ciudad,Central,Luque,,venta,departamento,302,82500,71,1296,construida
+2026-10-24,ciudad,Central,Luque,,venta,duplex,67,130114,55,984,construida
+2026-10-24,ciudad,Central,Luque,,venta,terreno,652,78068,436,157,terreno
+2026-10-24,ciudad,Central,Luque,,venta,deposito,6,,0,,
+2026-10-24,ciudad,Central,Luque,,venta,local,12,,4,,construida
+2026-10-24,ciudad,Central,Luque,,venta,otro,29,110521,0,,
+2026-10-24,ciudad,Central,Luque,,alquiler,casa,36,694,22,6,construida
+2026-10-24,ciudad,Central,Luque,,alquiler,departamento,73,659,34,11,construida
+2026-10-24,ciudad,Central,Luque,,alquiler,terreno,6,,0,,
+2026-10-24,ciudad,Central,Luque,,alquiler,local,14,,7,,construida
+2026-10-24,ciudad,Central,Luque,,alquiler,otro,5,,4,,construida
+2026-10-24,ciudad,Central,Mariano Roque Alonso,,venta,casa,142,131849,109,716,construida
+2026-10-24,ciudad,Central,Mariano Roque Alonso,,venta,departamento,90,60000,19,,construida
+2026-10-24,ciudad,Central,Mariano Roque Alonso,,venta,duplex,7,,7,,construida
+2026-10-24,ciudad,Central,Mariano Roque Alonso,,venta,terreno,199,95417,140,114,terreno
+2026-10-24,ciudad,Central,Mariano Roque Alonso,,venta,deposito,6,,0,,
+2026-10-24,ciudad,Central,Mariano Roque Alonso,,venta,edificio,6,,0,,
+2026-10-24,ciudad,Central,Mariano Roque Alonso,,venta,local,10,,7,,construida
+2026-10-24,ciudad,Central,Mariano Roque Alonso,,venta,otro,17,,0,,
+2026-10-24,ciudad,Central,Mariano Roque Alonso,,alquiler,casa,7,,4,,construida
+2026-10-24,ciudad,Central,Mariano Roque Alonso,,alquiler,departamento,6,,0,,
+2026-10-24,ciudad,Central,Nueva Asunción,,venta,casa,23,420000,22,1332,construida
+2026-10-24,ciudad,Central,Nueva Asunción,,venta,terreno,60,166577,55,167,terreno
+2026-10-24,ciudad,Central,Nueva Italia,,venta,casa,28,125000,20,625,construida
+2026-10-24,ciudad,Central,Nueva Italia,,venta,terreno,56,104091,49,8,terreno
+2026-10-24,ciudad,Central,Ñemby,,venta,casa,269,72864,242,704,construida
+2026-10-24,ciudad,Central,Ñemby,,venta,departamento,11,,2,,construida
+2026-10-24,ciudad,Central,Ñemby,,venta,duplex,5,,5,,construida
+2026-10-24,ciudad,Central,Ñemby,,venta,terreno,202,55775,160,104,terreno
+2026-10-24,ciudad,Central,Ñemby,,venta,local,6,,5,,construida
+2026-10-24,ciudad,Central,Ñemby,,alquiler,casa,8,,8,,construida
+2026-10-24,ciudad,Central,Ñemby,,alquiler,local,10,,7,,construida
+2026-10-24,ciudad,Central,Ñemby,,alquiler,otro,11,,1,,construida
+2026-10-24,ciudad,Central,San Antonio,,venta,casa,71,81538,66,616,construida
+2026-10-24,ciudad,Central,San Antonio,,venta,terreno,96,67659,82,80,terreno
+2026-10-24,ciudad,Central,San Lorenzo,,venta,casa,361,121440,268,780,construida
+2026-10-24,ciudad,Central,San Lorenzo,,venta,departamento,56,52039,18,,construida
+2026-10-24,ciudad,Central,San Lorenzo,,venta,duplex,32,124042,16,,construida
+2026-10-24,ciudad,Central,San Lorenzo,,venta,terreno,254,86743,189,154,terreno
+2026-10-24,ciudad,Central,San Lorenzo,,venta,deposito,17,,0,,
+2026-10-24,ciudad,Central,San Lorenzo,,venta,edificio,5,,0,,
+2026-10-24,ciudad,Central,San Lorenzo,,venta,local,24,176955,11,,construida
+2026-10-24,ciudad,Central,San Lorenzo,,venta,otro,12,,0,,
+2026-10-24,ciudad,Central,San Lorenzo,,alquiler,casa,10,,8,,construida
+2026-10-24,ciudad,Central,San Lorenzo,,alquiler,departamento,51,347,11,,construida
+2026-10-24,ciudad,Central,San Lorenzo,,alquiler,duplex,7,,4,,construida
+2026-10-24,ciudad,Central,San Lorenzo,,alquiler,terreno,7,,0,,
+2026-10-24,ciudad,Central,San Lorenzo,,alquiler,deposito,15,,3,,construida
+2026-10-24,ciudad,Central,San Lorenzo,,alquiler,local,49,347,21,8,construida
+2026-10-24,ciudad,Central,San Lorenzo,,alquiler,otro,11,,2,,construida
+2026-10-24,ciudad,Central,Villa Elisa,,venta,casa,226,100311,181,783,construida
+2026-10-24,ciudad,Central,Villa Elisa,,venta,departamento,8,,4,,construida
+2026-10-24,ciudad,Central,Villa Elisa,,venta,duplex,12,,9,,construida
+2026-10-24,ciudad,Central,Villa Elisa,,venta,terreno,170,60720,148,137,terreno
+2026-10-24,ciudad,Central,Villeta,,venta,casa,82,78068,65,658,construida
+2026-10-24,ciudad,Central,Villeta,,venta,terreno,148,151800,119,35,terreno
+2026-10-24,ciudad,Central,Ypacaraí,,venta,casa,67,100621,61,525,construida
+2026-10-24,ciudad,Central,Ypacaraí,,venta,terreno,182,39902,136,45,terreno
+2026-10-24,ciudad,Central,Ypané,,venta,casa,85,81538,73,506,construida
+2026-10-24,ciudad,Central,Ypané,,venta,terreno,220,30580,163,47,terreno
+2026-10-24,ciudad,Central,Zona Norte,,venta,departamento,6,,3,,construida
+2026-10-24,ciudad,Cordillera,Altos,,venta,casa,23,255950,20,1075,construida
+2026-10-24,ciudad,Cordillera,Altos,,venta,departamento,7,,4,,construida
+2026-10-24,ciudad,Cordillera,Altos,,venta,terreno,97,39640,61,81,terreno
+2026-10-24,ciudad,Cordillera,Altos,,venta,otro,5,,0,,
+2026-10-24,ciudad,Cordillera,Altos,,alquiler,casa,6,,6,,construida
+2026-10-24,ciudad,Cordillera,Arroyos y Esteros,,venta,terreno,22,21165,10,,terreno
+2026-10-24,ciudad,Cordillera,Atyra,,venta,casa,7,,5,,construida
+2026-10-24,ciudad,Cordillera,Atyra,,venta,terreno,26,40769,16,,terreno
+2026-10-24,ciudad,Cordillera,Caacupé,,venta,casa,31,85008,25,473,construida
+2026-10-24,ciudad,Cordillera,Caacupé,,venta,terreno,127,14746,71,31,terreno
+2026-10-24,ciudad,Cordillera,Caacupé,,venta,otro,7,,0,,
+2026-10-24,ciudad,Cordillera,Caacupé,,venta,quinta,6,,0,,
+2026-10-24,ciudad,Cordillera,Caraguatay,,venta,terreno,5,,2,,terreno
+2026-10-24,ciudad,Cordillera,Cordillera,,venta,casa,7,,0,,
+2026-10-24,ciudad,Cordillera,Emboscada,,venta,terreno,20,31227,8,,terreno
+2026-10-24,ciudad,Cordillera,Eusebio Ayala,,venta,terreno,10,,5,,terreno
+2026-10-24,ciudad,Cordillera,Itacurubí de la Cordillera,,venta,casa,5,,5,,construida
+2026-10-24,ciudad,Cordillera,Itacurubí de la Cordillera,,venta,terreno,6,,2,,terreno
+2026-10-24,ciudad,Cordillera,Loma Grande,,venta,terreno,14,,10,,terreno
+2026-10-24,ciudad,Cordillera,Nueva Colombia,,venta,terreno,10,,7,,terreno
+2026-10-24,ciudad,Cordillera,Piribebuy,,venta,casa,8,,8,,construida
+2026-10-24,ciudad,Cordillera,Piribebuy,,venta,terreno,37,22553,23,18,terreno
+2026-10-24,ciudad,Cordillera,San Bernardino,,venta,casa,98,230000,85,976,construida
+2026-10-24,ciudad,Cordillera,San Bernardino,,venta,departamento,13,,4,,construida
+2026-10-24,ciudad,Cordillera,San Bernardino,,venta,terreno,276,60720,149,70,terreno
+2026-10-24,ciudad,Cordillera,San Bernardino,,alquiler,casa,25,1735,21,8,construida
+2026-10-24,ciudad,Guairá,Independencia,,venta,terreno,6,,2,,terreno
+2026-10-24,ciudad,Guairá,Mbocayaty Del Guairá,,venta,terreno,18,,17,,terreno
+2026-10-24,ciudad,Itapúa,Bella Vista,,venta,terreno,10,,7,,terreno
+2026-10-24,ciudad,Itapúa,Cambyretá,,venta,casa,58,83273,53,702,construida
+2026-10-24,ciudad,Itapúa,Cambyretá,,venta,duplex,7,,3,,construida
+2026-10-24,ciudad,Itapúa,Cambyretá,,venta,terreno,145,34697,89,55,terreno
+2026-10-24,ciudad,Itapúa,Cambyretá,,venta,otro,8,,0,,
+2026-10-24,ciudad,Itapúa,Capitán Meza,,venta,terreno,5,,0,,
+2026-10-24,ciudad,Itapúa,Capitán Miranda,,venta,casa,11,,10,,construida
+2026-10-24,ciudad,Itapúa,Capitán Miranda,,venta,terreno,93,21425,56,33,terreno
+2026-10-24,ciudad,Itapúa,Capitán Miranda,,alquiler,local,5,,5,,construida
+2026-10-24,ciudad,Itapúa,Capitán Miranda,,alquiler,otro,6,,5,,construida
+2026-10-24,ciudad,Itapúa,Carmen del Paraná,,venta,casa,5,,5,,construida
+2026-10-24,ciudad,Itapúa,Carmen del Paraná,,venta,terreno,28,17262,26,31,terreno
+2026-10-24,ciudad,Itapúa,Coronel Bogado,,venta,terreno,11,,7,,terreno
+2026-10-24,ciudad,Itapúa,Encarnación,,venta,casa,159,140000,139,694,construida
+2026-10-24,ciudad,Itapúa,Encarnación,,venta,departamento,162,90500,35,1184,construida
+2026-10-24,ciudad,Itapúa,Encarnación,,venta,duplex,23,98887,23,682,construida
+2026-10-24,ciudad,Itapúa,Encarnación,,venta,terreno,330,52046,243,74,terreno
+2026-10-24,ciudad,Itapúa,Encarnación,,venta,deposito,5,,0,,
+2026-10-24,ciudad,Itapúa,Encarnación,,venta,edificio,17,,0,,
+2026-10-24,ciudad,Itapúa,Encarnación,,venta,local,18,,11,,construida
+2026-10-24,ciudad,Itapúa,Encarnación,,venta,otro,35,150000,0,,
+2026-10-24,ciudad,Itapúa,Encarnación,,venta,quinta,6,,0,,
+2026-10-24,ciudad,Itapúa,Encarnación,,alquiler,casa,15,,13,,construida
+2026-10-24,ciudad,Itapúa,Encarnación,,alquiler,departamento,54,434,13,,construida
+2026-10-24,ciudad,Itapúa,Encarnación,,alquiler,terreno,10,,0,,
+2026-10-24,ciudad,Itapúa,Encarnación,,alquiler,local,11,,4,,construida
+2026-10-24,ciudad,Itapúa,Encarnación,,alquiler,otro,5,,1,,construida
+2026-10-24,ciudad,Itapúa,Fram,,venta,terreno,27,15006,24,33,terreno
+2026-10-24,ciudad,Itapúa,Hohenau,,venta,casa,8,,7,,construida
+2026-10-24,ciudad,Itapúa,Hohenau,,venta,terreno,20,40000,14,,terreno
+2026-10-24,ciudad,Itapúa,Natalio,,venta,terreno,5,,3,,terreno
+2026-10-24,ciudad,Itapúa,Obligado,,venta,casa,9,,9,,construida
+2026-10-24,ciudad,Itapúa,Obligado,,venta,terreno,22,30013,18,,terreno
+2026-10-24,ciudad,Itapúa,Pirapó,,venta,terreno,5,,3,,terreno
+2026-10-24,ciudad,Itapúa,San Juan del Paraná,,venta,casa,21,140925,19,,construida
+2026-10-24,ciudad,Itapúa,San Juan del Paraná,,venta,terreno,124,14746,57,37,terreno
+2026-10-24,ciudad,Itapúa,San Juan del Paraná,,venta,otro,13,,0,,
+2026-10-24,ciudad,Itapúa,San Pedro del Paraná,,venta,terreno,19,,9,,terreno
+2026-10-24,ciudad,Itapúa,Tomás Romero Pereira,,venta,terreno,6,,5,,terreno
+2026-10-24,ciudad,Itapúa,Trinidad,,venta,terreno,8,,6,,terreno
+2026-10-24,ciudad,Misiones,Ayolas,,venta,terreno,5,,1,,terreno
+2026-10-24,ciudad,Misiones,San Ignacio,,venta,casa,8,,8,,construida
+2026-10-24,ciudad,Misiones,San Ignacio,,venta,terreno,19,,15,,terreno
+2026-10-24,ciudad,Misiones,San Juan Bautista,,venta,terreno,5,,5,,terreno
+2026-10-24,ciudad,Misiones,Villa Florida,,venta,terreno,5,,5,,terreno
+2026-10-24,ciudad,Ñeembucú,Pilar,,venta,terreno,7,,3,,terreno
+2026-10-24,ciudad,Paraguarí,Paraguarí,,venta,casa,7,,7,,construida
+2026-10-24,ciudad,Paraguarí,Paraguarí,,venta,terreno,15,,8,,terreno
+2026-10-24,ciudad,Paraguarí,Pirayú,,venta,terreno,11,,5,,terreno
+2026-10-24,ciudad,Paraguarí,Yaguarón,,venta,terreno,17,,11,,terreno
+2026-10-24,ciudad,Presidente Hayes,Benjamín Aceval,,venta,terreno,9,,4,,terreno
+2026-10-24,ciudad,Presidente Hayes,Doctor José Falcón,,venta,terreno,36,26890,18,,terreno
+2026-10-24,ciudad,Presidente Hayes,Presidente Hayes,,venta,terreno,7,,0,,
+2026-10-24,ciudad,Presidente Hayes,Villa Hayes,,venta,casa,7,,5,,construida
+2026-10-24,ciudad,Presidente Hayes,Villa Hayes,,venta,terreno,81,95417,52,205,terreno
+2026-10-24,ciudad,San Pedro,San Estanislao,,venta,terreno,11,,5,,terreno
+2026-10-24,barrio,Asunción,Asunción,Bernardino Caballero,venta,casa,21,320000,20,856,construida
+2026-10-24,barrio,Asunción,Asunción,Cañada del Ybyray,venta,casa,22,457500,19,,construida
+2026-10-24,barrio,Asunción,Asunción,Ciudad Nueva,venta,casa,38,205000,34,712,construida
+2026-10-24,barrio,Asunción,Asunción,Ciudad Nueva,venta,departamento,23,112000,9,,construida
+2026-10-24,barrio,Asunción,Asunción,Herrera,venta,casa,46,350000,41,1250,construida
+2026-10-24,barrio,Asunción,Asunción,Herrera,venta,departamento,25,113700,8,,construida
+2026-10-24,barrio,Asunción,Asunción,Herrera,alquiler,casa,21,3000,20,9,construida
+2026-10-24,barrio,Asunción,Asunción,Herrera,alquiler,departamento,22,963,20,13,construida
+2026-10-24,barrio,Asunción,Asunción,Hipódromo,venta,casa,23,190834,22,817,construida
+2026-10-24,barrio,Asunción,Asunción,Itá Enramada,venta,casa,24,192500,23,667,construida
+2026-10-24,barrio,Asunción,Asunción,Jara,venta,casa,72,300000,65,952,construida
+2026-10-24,barrio,Asunción,Asunción,Jara,venta,departamento,69,119000,38,1528,construida
+2026-10-24,barrio,Asunción,Asunción,Jara,alquiler,casa,32,1561,29,5,construida
+2026-10-24,barrio,Asunción,Asunción,Jara,alquiler,departamento,42,737,37,11,construida
+2026-10-24,barrio,Asunción,Asunción,La Encarnación,venta,departamento,24,86305,6,,construida
+2026-10-24,barrio,Asunción,Asunción,Las Carmelitas,venta,casa,46,600000,36,2053,construida
+2026-10-24,barrio,Asunción,Asunción,Las Carmelitas,alquiler,casa,39,3300,37,9,construida
+2026-10-24,barrio,Asunción,Asunción,Las Carmelitas,alquiler,departamento,83,1100,83,15,construida
+2026-10-24,barrio,Asunción,Asunción,Las Lomas,venta,casa,112,525000,97,1436,construida
+2026-10-24,barrio,Asunción,Asunción,Las Lomas,venta,departamento,233,131600,140,2207,construida
+2026-10-24,barrio,Asunción,Asunción,Las Lomas,alquiler,casa,65,2900,57,9,construida
+2026-10-24,barrio,Asunción,Asunción,Las Lomas,alquiler,departamento,144,1114,132,15,construida
+2026-10-24,barrio,Asunción,Asunción,Las Lomas (Carmelitas),venta,departamento,152,115353,58,1770,construida
+2026-10-24,barrio,Asunción,Asunción,Las Mercedes,venta,casa,105,380000,86,1028,construida
+2026-10-24,barrio,Asunción,Asunción,Las Mercedes,venta,departamento,116,135490,82,1660,construida
+2026-10-24,barrio,Asunción,Asunción,Las Mercedes,alquiler,casa,51,2255,41,7,construida
+2026-10-24,barrio,Asunción,Asunción,Las Mercedes,alquiler,departamento,69,867,57,12,construida
+2026-10-24,barrio,Asunción,Asunción,Loma Pytá,venta,casa,72,163510,63,1031,construida
+2026-10-24,barrio,Asunción,Asunción,Loma Pytá,venta,departamento,66,48000,26,1376,construida
+2026-10-24,barrio,Asunción,Asunción,Loma Pytá,alquiler,casa,20,841,16,,construida
+2026-10-24,barrio,Asunción,Asunción,Loma Pytá,alquiler,departamento,41,555,39,15,construida
+2026-10-24,barrio,Asunción,Asunción,Los Laureles,venta,casa,96,350000,86,1157,construida
+2026-10-24,barrio,Asunción,Asunción,Los Laureles,venta,departamento,103,108949,71,1728,construida
+2026-10-24,barrio,Asunción,Asunción,Los Laureles,alquiler,casa,44,2169,41,6,construida
+2026-10-24,barrio,Asunción,Asunción,Los Laureles,alquiler,departamento,78,867,73,13,construida
+2026-10-24,barrio,Asunción,Asunción,Luis Alberto de Herrera,venta,casa,47,350000,38,1212,construida
+2026-10-24,barrio,Asunción,Asunción,Luis Alberto de Herrera,venta,departamento,81,105000,41,1512,construida
+2026-10-24,barrio,Asunción,Asunción,Luis Alberto de Herrera,venta,terreno,22,218428,20,489,terreno
+2026-10-24,barrio,Asunción,Asunción,Luis Alberto de Herrera,alquiler,casa,29,2602,24,6,construida
+2026-10-24,barrio,Asunción,Asunción,Luis Alberto de Herrera,alquiler,departamento,45,833,42,13,construida
+2026-10-24,barrio,Asunción,Asunción,Madame Lynch,venta,casa,41,370000,30,1233,construida
+2026-10-24,barrio,Asunción,Asunción,Madame Lynch,venta,departamento,108,130751,54,1964,construida
+2026-10-24,barrio,Asunción,Asunción,Madame Lynch,alquiler,departamento,37,995,29,14,construida
+2026-10-24,barrio,Asunción,Asunción,Manorá,venta,casa,89,470000,72,1395,construida
+2026-10-24,barrio,Asunción,Asunción,Manorá,venta,departamento,121,160000,63,2460,construida
+2026-10-24,barrio,Asunción,Asunción,Manorá,alquiler,casa,43,3000,28,9,construida
+2026-10-24,barrio,Asunción,Asunción,Manorá,alquiler,departamento,76,1200,73,15,construida
+2026-10-24,barrio,Asunción,Asunción,Mariscal Estigarribia,venta,casa,126,477500,94,1157,construida
+2026-10-24,barrio,Asunción,Asunción,Mariscal Estigarribia,venta,departamento,115,134900,69,1779,construida
+2026-10-24,barrio,Asunción,Asunción,Mariscal Estigarribia,alquiler,casa,58,2425,51,7,construida
+2026-10-24,barrio,Asunción,Asunción,Mariscal Estigarribia,alquiler,departamento,84,1123,77,13,construida
+2026-10-24,barrio,Asunción,Asunción,Mariscal López,venta,casa,42,460000,34,1060,construida
+2026-10-24,barrio,Asunción,Asunción,Mariscal López,venta,departamento,51,110000,28,1615,construida
+2026-10-24,barrio,Asunción,Asunción,Mbocayaty,venta,casa,48,388500,40,1414,construida
+2026-10-24,barrio,Asunción,Asunción,Mburicaó,venta,casa,97,395000,67,1316,construida
+2026-10-24,barrio,Asunción,Asunción,Mburicaó,venta,departamento,78,140000,66,1909,construida
+2026-10-24,barrio,Asunción,Asunción,Mburicaó,alquiler,casa,49,2500,28,6,construida
+2026-10-24,barrio,Asunción,Asunción,Mburicaó,alquiler,departamento,50,659,47,11,construida
+2026-10-24,barrio,Asunción,Asunción,Mburucuyá,venta,casa,109,470000,91,1513,construida
+2026-10-24,barrio,Asunción,Asunción,Mburucuyá,venta,departamento,137,190000,85,2083,construida
+2026-10-24,barrio,Asunción,Asunción,Mburucuyá,alquiler,casa,84,2500,80,8,construida
+2026-10-24,barrio,Asunción,Asunción,Mburucuyá,alquiler,departamento,100,1214,93,13,construida
+2026-10-24,barrio,Asunción,Asunción,Nazareth,venta,casa,20,234205,18,,construida
+2026-10-24,barrio,Asunción,Asunción,Obrero,venta,casa,25,154402,21,672,construida
+2026-10-24,barrio,Asunción,Asunción,Pettirossi,venta,casa,21,194303,19,,construida
+2026-10-24,barrio,Asunción,Asunción,Recoleta,venta,casa,147,373861,131,1085,construida
+2026-10-24,barrio,Asunción,Asunción,Recoleta,venta,departamento,273,97600,120,1784,construida
+2026-10-24,barrio,Asunción,Asunción,Recoleta,venta,terreno,30,275000,25,634,terreno
+2026-10-24,barrio,Asunción,Asunción,Recoleta,alquiler,casa,63,2500,56,8,construida
+2026-10-24,barrio,Asunción,Asunción,Recoleta,alquiler,departamento,84,901,76,15,construida
+2026-10-24,barrio,Asunción,Asunción,Republicano,venta,casa,23,140000,22,600,construida
+2026-10-24,barrio,Asunción,Asunción,Sajonia,venta,casa,105,164811,103,551,construida
+2026-10-24,barrio,Asunción,Asunción,Sajonia,venta,departamento,78,84136,54,1387,construida
+2026-10-24,barrio,Asunción,Asunción,Sajonia,alquiler,casa,27,1006,24,4,construida
+2026-10-24,barrio,Asunción,Asunción,Sajonia,alquiler,departamento,46,607,42,13,construida
+2026-10-24,barrio,Asunción,Asunción,San Cristóbal,venta,casa,51,355000,40,1154,construida
+2026-10-24,barrio,Asunción,Asunción,San Cristóbal,venta,departamento,45,95239,19,,construida
+2026-10-24,barrio,Asunción,Asunción,San Cristóbal,alquiler,casa,23,2300,17,,construida
+2026-10-24,barrio,Asunción,Asunción,San Jorge,venta,casa,71,380000,58,1348,construida
+2026-10-24,barrio,Asunción,Asunción,San Jorge,venta,departamento,143,131950,88,1975,construida
+2026-10-24,barrio,Asunción,Asunción,San Jorge,venta,terreno,22,590000,17,,terreno
+2026-10-24,barrio,Asunción,Asunción,San Jorge,alquiler,casa,57,3000,48,7,construida
+2026-10-24,barrio,Asunción,Asunción,San Jorge,alquiler,departamento,67,1100,62,14,construida
+2026-10-24,barrio,Asunción,Asunción,San Pablo,venta,casa,35,171750,30,676,construida
+2026-10-24,barrio,Asunción,Asunción,San Roque,venta,casa,32,152201,27,631,construida
+2026-10-24,barrio,Asunción,Asunción,San Roque,venta,departamento,23,110000,7,,construida
+2026-10-24,barrio,Asunción,Asunción,San Vicente,venta,casa,145,220000,137,768,construida
+2026-10-24,barrio,Asunción,Asunción,San Vicente,venta,departamento,69,90000,56,1161,construida
+2026-10-24,barrio,Asunción,Asunción,San Vicente,venta,terreno,22,145057,17,,terreno
+2026-10-24,barrio,Asunción,Asunción,San Vicente,alquiler,casa,49,1214,47,4,construida
+2026-10-24,barrio,Asunción,Asunción,San Vicente,alquiler,departamento,58,625,54,9,construida
+2026-10-24,barrio,Asunción,Asunción,Santísima Trinidad,venta,casa,27,279311,26,1095,construida
+2026-10-24,barrio,Asunción,Asunción,Santísima Trinidad,venta,departamento,81,104220,50,1719,construida
+2026-10-24,barrio,Asunción,Asunción,Santísima Trinidad,alquiler,casa,25,1662,23,6,construida
+2026-10-24,barrio,Asunción,Asunción,Trinidad,venta,departamento,33,195000,23,2130,construida
+2026-10-24,barrio,Asunción,Asunción,Trinidad,alquiler,departamento,22,1225,21,13,construida
+2026-10-24,barrio,Asunción,Asunción,Villa Aurelia,venta,casa,109,295000,87,1080,construida
+2026-10-24,barrio,Asunción,Asunción,Villa Aurelia,venta,departamento,63,106835,50,1517,construida
+2026-10-24,barrio,Asunción,Asunción,Villa Aurelia,alquiler,casa,64,3296,49,7,construida
+2026-10-24,barrio,Asunción,Asunción,Villa Aurelia,alquiler,departamento,50,1024,45,11,construida
+2026-10-24,barrio,Asunción,Asunción,Villa Morra,venta,casa,62,441857,53,1254,construida
+2026-10-24,barrio,Asunción,Asunción,Villa Morra,venta,departamento,197,122034,113,1910,construida
+2026-10-24,barrio,Asunción,Asunción,Villa Morra,alquiler,casa,50,3500,43,6,construida
+2026-10-24,barrio,Asunción,Asunción,Villa Morra,alquiler,departamento,77,1093,66,14,construida
+2026-10-24,barrio,Asunción,Asunción,Vista Alegre,venta,casa,32,170016,27,679,construida
+2026-10-24,barrio,Asunción,Asunción,Ycuá Satí,venta,casa,69,370000,61,1218,construida
+2026-10-24,barrio,Asunción,Asunción,Ycuá Satí,venta,departamento,194,111150,78,2179,construida
+2026-10-24,barrio,Asunción,Asunción,Ycuá Satí,venta,terreno,30,474000,25,654,terreno
+2026-10-24,barrio,Asunción,Asunción,Ycuá Satí,alquiler,casa,40,2750,33,7,construida
+2026-10-24,barrio,Asunción,Asunción,Ycuá Satí,alquiler,departamento,111,1200,99,14,construida
+2026-10-24,barrio,Asunción,Asunción,Ytay,venta,departamento,40,72000,18,,construida
+2026-10-24,barrio,Central,Fernando de la Mora,Laguna Grande,venta,departamento,37,60720,4,,construida
+2026-10-24,barrio,Central,Luque,Campo Grande,venta,departamento,37,81237,2,,construida
+2026-10-24,barrio,Central,Luque,Cañada Garay,venta,casa,33,59852,26,947,construida
+2026-10-24,barrio,Central,Luque,Laurelty,venta,terreno,25,78068,14,,terreno
+2026-10-24,barrio,Central,Luque,Maramburé,venta,casa,26,115927,25,1102,construida
+2026-10-24,barrio,Central,Luque,Mora Kue,venta,casa,32,75032,31,971,construida
+2026-10-24,barrio,Central,Luque,Zárate Isla,venta,terreno,30,170000,13,,terreno
+2026-10-24,barrio,Central,Ñemby,Pa`i Ñu,venta,casa,21,86743,20,685,construida
+2026-10-24,barrio,Central,San Lorenzo,San José,alquiler,departamento,26,347,0,,
+2026-10-24,barrio,Central,Ypané,San Cayetano,venta,terreno,24,22553,14,,terreno
+2026-10-24,barrio,Itapúa,Encarnación,Itá Paso,venta,terreno,28,13879,28,34,terreno
+2026-10-24,barrio,Itapúa,Encarnación,San Isidro,venta,terreno,22,48229,15,,terreno
