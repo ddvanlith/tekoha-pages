@@ -156,29 +156,20 @@ jobs:
           node pipeline/build-casa.mjs 2>&1 | sed -E -u 's#postgres(ql)?://[^[:space:]]*#[connection string]#g; s/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/[email]/g; s/\+?[0-9]([ .()-]{0,2}[0-9]){8,}/[number]/g' \
             || { rm -rf /tmp/pages/casa; echo "::warning::casa app build failed; the pages publish without /casa/"; }
 
-      # Tasá, the daily price game (/tasa/), and Compartí Tekoha, the referral link (/compartir/): pipeline/build-tasa.mjs
-      # and pipeline/build-compartir.mjs, docs/viral-loop.md in the private repo. Tasá reads the app's card and detail files
-      # and its own archive, tasa/data/archive.json on gh-pages, read back through the API (GH_TOKEN), so every game stays
-      # published; an archive it cannot read (exit 2) stops the run before anything is published, and the live site keeps
-      # its games. Compartí reads the referral counts as the read-only role (codes and counts only). A failed Compartí build
-      # removes its folder and the rest publishes.
-      - name: Build Tasa and Comparti
+      # Compartí Tekoha, the referral link (/compartir/): pipeline/build-compartir.mjs, docs/viral-loop.md in the private
+      # repo. It reads the referral counts as the read-only role (codes and counts only). A failed Compartí build removes its
+      # folder and the rest publishes. Tasá, the daily price game, came off the site on 2026-10-24 (Dennis): no step builds
+      # it, so this orphan publish drops /tasa/.
+      - name: Build Comparti
         if: steps.gate.outputs.build == 'true'
         working-directory: code
         env:
           SITE_DIR: /tmp/pages
-          GH_TOKEN: ${{ github.token }}
           DATABASE_URL: ${{ secrets.READONLY_DATABASE_URL }}
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
           TEKOHA_PUBLIC_EMAIL: ${{ vars.TEKOHA_PUBLIC_EMAIL }}
           CF_ANALYTICS_TOKEN: ${{ vars.CF_ANALYTICS_TOKEN }}
         run: |
-          set +e
-          node pipeline/build-tasa.mjs 2>&1 | sed -E -u 's#postgres(ql)?://[^[:space:]]*#[connection string]#g; s/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/[email]/g; s/\+?[0-9]([ .()-]{0,2}[0-9]){8,}/[number]/g'
-          TASA=${PIPESTATUS[0]}
-          set -e
-          if [ "$TASA" = "2" ]; then echo "::error::the Tasa archive could not be read; nothing is published, so the live games stay"; exit 1; fi
-          if [ "$TASA" != "0" ]; then echo "::warning::Tasa build failed (exit $TASA); see the lines above"; fi
           node pipeline/build-compartir.mjs 2>&1 | sed -E -u 's#postgres(ql)?://[^[:space:]]*#[connection string]#g; s/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/[email]/g; s/\+?[0-9]([ .()-]{0,2}[0-9]){8,}/[number]/g' \
             || { rm -rf /tmp/pages/compartir; echo "::warning::Comparti build failed; the pages publish without /compartir/"; }
 
