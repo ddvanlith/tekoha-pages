@@ -21,7 +21,6 @@ name: tekoha-property-pages
 # that masks anything shaped like a connection string, an email address or a phone number.
 on:
   schedule:
-    - cron: "15 19 * * *"
     - cron: "15 23 * * *"
   workflow_dispatch:
     inputs:
