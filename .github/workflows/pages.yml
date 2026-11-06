@@ -2,9 +2,11 @@ name: tekoha-property-pages
 
 # One static page per property (https://ddvanlith.github.io/tekoha-pages/), built here because Actions
 # minutes are free on a public repository. The code is the private ddvanlith/tekoha
-# (pipeline/property-pages.mjs), checked out with a read-only deploy key (secret TEKOHA_CODE_KEY); the
-# database is read as the read-only role tekoha_reader (secret READONLY_DATABASE_URL). The whole
-# arrangement is in docs/ci-minutes.md of that repo.
+# (pipeline/property-pages.mjs), checked out with a read-only deploy key (secret TEKOHA_CODE_KEY). The
+# builders do not read Supabase: the private daily pull exports what they read once a day (pipeline/build-data,
+# the orphan branch build-data, read with the same key), and the job restores it into a local PostGIS and
+# runs the builders on it as tekoha_reader, so their SQL and every figure are the same and the free plan's
+# 5 GB a month of data out is not spent here. The whole arrangement is in docs/ci-minutes.md of that repo.
 #
 # The private daily pull publishes between about 14:00 and 19:00 UTC (its cron starts hours late) and a
 # watchdog re-run can land near 22:00, so the build is scheduled after each. A scheduled build runs only
@@ -98,6 +100,22 @@ jobs:
         working-directory: code
         run: npm ci --no-audit --no-fund
 
+      - uses: actions/checkout@v5
+        if: steps.gate.outputs.build == 'true'
+        with:
+          repository: ddvanlith/tekoha
+          ref: build-data
+          ssh-key: ${{ secrets.TEKOHA_CODE_KEY }}
+          persist-credentials: false
+          path: build-data
+
+      - name: Restore the build data
+        if: steps.gate.outputs.build == 'true'
+        working-directory: code
+        run: |
+          bash pipeline/build-data/postgis.sh
+          PSQL="docker exec -i tekoha-pg psql -U postgres -d postgres -q" node pipeline/build-data/restore.mjs --dir "$GITHUB_WORKSPACE/build-data"
+
       # The builder refuses to clear a directory it did not make. A size limit never fails it: past the site
       # budget (450 MB, or the repository variable PAGES_SITE_MB) it leaves out the least useful pages and says
       # so in the log (pipeline/site-budget.mjs in the private repo); past the page cap it warns.
@@ -112,7 +130,7 @@ jobs:
         if: steps.gate.outputs.build == 'true'
         working-directory: code
         env:
-          DATABASE_URL: ${{ secrets.READONLY_DATABASE_URL }}
+          DATABASE_URL: postgresql://tekoha_reader:tekoha@localhost:5432/postgres
           PAGES_DIR: /tmp/pages
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
           TEKOHA_PUBLIC_EMAIL: ${{ vars.TEKOHA_PUBLIC_EMAIL }}
@@ -120,7 +138,6 @@ jobs:
           REPORT_PAYMENT_LINK: ${{ vars.REPORT_PAYMENT_LINK }}
           PAGES_SITE_MB: ${{ vars.PAGES_SITE_MB }}
         run: |
-          if [ -z "$DATABASE_URL" ]; then echo "::error::READONLY_DATABASE_URL is not set"; exit 1; fi
           node pipeline/property-pages.mjs 2>&1 | sed -E -u 's#postgres(ql)?://[^[:space:]]*#[connection string]#g; s/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/[email]/g; s/\+?[0-9]([ .()-]{0,2}[0-9]){8,}/[number]/g'
 
       # The app prototype (pipeline/build-app.mjs, docs/prototype-build.md in the private repo): Buscar, Oferta and
@@ -130,7 +147,7 @@ jobs:
         if: steps.gate.outputs.build == 'true'
         working-directory: code
         env:
-          DATABASE_URL: ${{ secrets.READONLY_DATABASE_URL }}
+          DATABASE_URL: postgresql://tekoha_reader:tekoha@localhost:5432/postgres
           SITE_DIR: /tmp/pages
           CF_ANALYTICS_TOKEN: ${{ vars.CF_ANALYTICS_TOKEN }}
         run: |
@@ -164,7 +181,7 @@ jobs:
         working-directory: code
         env:
           SITE_DIR: /tmp/pages
-          DATABASE_URL: ${{ secrets.READONLY_DATABASE_URL }}
+          DATABASE_URL: postgresql://tekoha_reader:tekoha@localhost:5432/postgres
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
           TEKOHA_PUBLIC_EMAIL: ${{ vars.TEKOHA_PUBLIC_EMAIL }}
           CF_ANALYTICS_TOKEN: ${{ vars.CF_ANALYTICS_TOKEN }}

@@ -1,0 +1,77 @@
+name: tekoha-build-data-check
+
+# A dry run of the build-data path, on a push to the build-data branch only: the builders run on the restored export
+# (ddvanlith/tekoha, branch build-data) exactly as pages.yml now runs them, and their output is compared file by file
+# with the published gh-pages. Nothing is published and Supabase is not read.
+on:
+  push:
+    branches: [build-data]
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          repository: ddvanlith/tekoha
+          ref: egress-build-data
+          ssh-key: ${{ secrets.TEKOHA_CODE_KEY }}
+          persist-credentials: false
+          path: code
+
+      - uses: actions/checkout@v5
+        with:
+          repository: ddvanlith/tekoha
+          ref: build-data
+          ssh-key: ${{ secrets.TEKOHA_CODE_KEY }}
+          persist-credentials: false
+          path: build-data
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: code/package-lock.json
+
+      - name: Install
+        working-directory: code
+        run: npm ci --no-audit --no-fund
+
+      - name: Restore the build data
+        working-directory: code
+        run: |
+          bash pipeline/build-data/postgis.sh
+          PSQL="docker exec -i tekoha-pg psql -U postgres -d postgres -q" node pipeline/build-data/restore.mjs --dir "$GITHUB_WORKSPACE/build-data"
+
+      - name: Build as pages.yml does
+        working-directory: code
+        env:
+          DATABASE_URL: postgresql://tekoha_reader:tekoha@localhost:5432/postgres
+          # Prints what each builder received from the database: what it would read from Supabase with the same rows.
+          NODE_OPTIONS: --import=file://${{ github.workspace }}/code/pipeline/build-data/count-reads.mjs
+          PAGES_DIR: /tmp/pages
+          SITE_DIR: /tmp/pages
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+          TEKOHA_PUBLIC_EMAIL: ${{ vars.TEKOHA_PUBLIC_EMAIL }}
+          CF_ANALYTICS_TOKEN: ${{ vars.CF_ANALYTICS_TOKEN }}
+          REPORT_PAYMENT_LINK: ${{ vars.REPORT_PAYMENT_LINK }}
+          PAGES_SITE_MB: ${{ vars.PAGES_SITE_MB }}
+        run: |
+          mask() { sed -E -u 's#postgres(ql)?://[^[:space:]]*#[connection string]#g; s/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/[email]/g'; }
+          node pipeline/property-pages.mjs 2>&1 | mask
+          node pipeline/build-app.mjs 2>&1 | mask
+          node pipeline/build-casa.mjs 2>&1 | mask
+          node pipeline/build-compartir.mjs 2>&1 | mask
+
+      - name: Compare with the published pages
+        run: |
+          git clone -q --depth 1 --branch gh-pages https://github.com/ddvanlith/tekoha-pages.git /tmp/published
+          git -C /tmp/published log -1 --format='published: %h %cI %s'
+          node code/pipeline/build-data/compare.mjs /tmp/pages /tmp/published
