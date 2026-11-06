@@ -2,9 +2,11 @@ name: tekoha-property-pages
 
 # One static page per property (https://ddvanlith.github.io/tekoha-pages/), built here because Actions
 # minutes are free on a public repository. The code is the private ddvanlith/tekoha
-# (pipeline/property-pages.mjs), checked out with a read-only deploy key (secret TEKOHA_CODE_KEY); the
-# database is read as the read-only role tekoha_reader (secret READONLY_DATABASE_URL). The whole
-# arrangement is in docs/ci-minutes.md of that repo.
+# (pipeline/property-pages.mjs), checked out with a read-only deploy key (secret TEKOHA_CODE_KEY). The
+# builders do not read Supabase: the private daily pull exports what they read once a day (pipeline/build-data,
+# the orphan branch build-data, read with the same key), and the job restores it into a local PostGIS and
+# runs the builders on it as tekoha_reader, so their SQL and every figure are the same and the free plan's
+# 5 GB a month of data out is not spent here. The whole arrangement is in docs/ci-minutes.md of that repo.
 #
 # The private daily pull publishes between about 14:00 and 19:00 UTC (its cron starts hours late) and a
 # watchdog re-run can land near 22:00, so the build is scheduled after each. A scheduled build runs only
@@ -14,8 +16,9 @@ name: tekoha-property-pages
 # partial capture (source_volume:) or a dead diff engine (diff_engine_dead). Every other reason is logged and
 # the build goes on: a stale source (the builder ages its listings out by its own window), a quarantine spike
 # (quarantined rows are outside core.listings_clean), the database size, a mail failure. Without that file
-# (a run before 2026-10-23) the text status must be GREEN. A manual dispatch always builds; dispatched with
-# as_scheduled it applies the same gate.
+# (a run before 2026-10-23) the text status must be GREEN. A manual dispatch skips that gate; dispatched with
+# as_scheduled it applies it. Any build, a manual dispatch too, holds when the build data is older than the newest
+# pipeline run (that run's export failed), and says so in its log; the published pages stay.
 #
 # This log is public. The builder prints counts, timings and page paths; its output also passes a filter
 # that masks anything shaped like a connection string, an email address or a phone number.
@@ -82,21 +85,61 @@ jobs:
         if: steps.gate.outputs.build == 'true'
         with:
           repository: ddvanlith/tekoha
+          ref: build-data
+          ssh-key: ${{ secrets.TEKOHA_CODE_KEY }}
+          persist-credentials: false
+          path: build-data
+
+      # An export older than the newest pipeline run (its export step failed or did not run) would publish an older
+      # day's figures as new, so every build holds on it, a manual dispatch too. Fresh: the export came from the run
+      # that wrote the newest last-run.txt (the run id in that commit's message is the manifest's pipeline_run), or it
+      # was made after that run published (a seed dispatched by hand in the private repo).
+      - name: Is the build data from the newest pipeline run?
+        id: fresh
+        if: steps.gate.outputs.build == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          LAST=$(gh api "repos/ddvanlith/tekoha-daily/commits?path=last-run.txt&per_page=1" -q '.[0] // {}')
+          RUN_AT=$(jq -r '.commit.committer.date // ""' <<< "$LAST")
+          RUN_ID=$(jq -r '.commit.message // ""' <<< "$LAST" | sed -n 's/.*pipeline run \([0-9]*-[0-9]*\).*/\1/p')
+          EXPORT_AT=$(jq -r '.exported_at // ""' build-data/manifest.json)
+          EXPORT_RUN=$(jq -r '.pipeline_run // ""' build-data/manifest.json)
+          echo "pipeline last published ${RUN_AT:-never}${RUN_ID:+ (run $RUN_ID)}; build data exported ${EXPORT_AT:-never}${EXPORT_RUN:+ (run $EXPORT_RUN)}"
+          if [ -z "$RUN_AT" ] || { [ -n "$RUN_ID" ] && [ "$RUN_ID" = "$EXPORT_RUN" ]; } \
+            || { [ -n "$EXPORT_AT" ] && [ "$(date -u -d "$EXPORT_AT" +%s)" -ge "$(date -u -d "$RUN_AT" +%s)" ]; }; then
+            echo "build=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "build=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::Held: the build data is older than the newest pipeline run (its export step failed or did not run); the published pages stay. The next export releases the build: the next daily pull, or the build-data-seed workflow in the private repo."
+          fi
+
+      - uses: actions/checkout@v5
+        if: steps.fresh.outputs.build == 'true'
+        with:
+          repository: ddvanlith/tekoha
           ssh-key: ${{ secrets.TEKOHA_CODE_KEY }}
           persist-credentials: false
           path: code
 
       - uses: actions/setup-node@v5
-        if: steps.gate.outputs.build == 'true'
+        if: steps.fresh.outputs.build == 'true'
         with:
           node-version: 22
           cache: npm
           cache-dependency-path: code/package-lock.json
 
       - name: Install
-        if: steps.gate.outputs.build == 'true'
+        if: steps.fresh.outputs.build == 'true'
         working-directory: code
         run: npm ci --no-audit --no-fund
+
+      - name: Restore the build data
+        if: steps.fresh.outputs.build == 'true'
+        working-directory: code
+        run: |
+          bash pipeline/build-data/postgis.sh
+          PSQL="docker exec -i tekoha-pg psql -U postgres -d postgres -q" node pipeline/build-data/restore.mjs --dir "$GITHUB_WORKSPACE/build-data"
 
       # The builder refuses to clear a directory it did not make. A size limit never fails it: past the site
       # budget (450 MB, or the repository variable PAGES_SITE_MB) it leaves out the least useful pages and says
@@ -109,10 +152,10 @@ jobs:
       # page offers the free value report; the repository variable REPORT_PAYMENT_LINK, while set, adds the
       # paid one beside it, on the pages and in Casa (pipeline/report/ in the private repo).
       - name: Build property pages
-        if: steps.gate.outputs.build == 'true'
+        if: steps.fresh.outputs.build == 'true'
         working-directory: code
         env:
-          DATABASE_URL: ${{ secrets.READONLY_DATABASE_URL }}
+          DATABASE_URL: postgresql://tekoha_reader:tekoha@localhost:5432/postgres
           PAGES_DIR: /tmp/pages
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
           TEKOHA_PUBLIC_EMAIL: ${{ vars.TEKOHA_PUBLIC_EMAIL }}
@@ -120,17 +163,16 @@ jobs:
           REPORT_PAYMENT_LINK: ${{ vars.REPORT_PAYMENT_LINK }}
           PAGES_SITE_MB: ${{ vars.PAGES_SITE_MB }}
         run: |
-          if [ -z "$DATABASE_URL" ]; then echo "::error::READONLY_DATABASE_URL is not set"; exit 1; fi
           node pipeline/property-pages.mjs 2>&1 | sed -E -u 's#postgres(ql)?://[^[:space:]]*#[connection string]#g; s/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/[email]/g; s/\+?[0-9]([ .()-]{0,2}[0-9]){8,}/[number]/g'
 
       # The app prototype (pipeline/build-app.mjs, docs/prototype-build.md in the private repo): Buscar, Oferta and
       # Mercado at /app/, its index and detail files written beside the pages from the same read-only connection. A
       # failed app build removes its half-written folder and the pages publish without it.
       - name: Build app prototype
-        if: steps.gate.outputs.build == 'true'
+        if: steps.fresh.outputs.build == 'true'
         working-directory: code
         env:
-          DATABASE_URL: ${{ secrets.READONLY_DATABASE_URL }}
+          DATABASE_URL: postgresql://tekoha_reader:tekoha@localhost:5432/postgres
           SITE_DIR: /tmp/pages
           CF_ANALYTICS_TOKEN: ${{ vars.CF_ANALYTICS_TOKEN }}
         run: |
@@ -143,7 +185,7 @@ jobs:
       # email to TEKOHA_PUBLIC_EMAIL until then, and says it opens soon while that variable is unset too. A failed casa
       # build removes its folder and the rest publishes without it.
       - name: Build casa app
-        if: steps.gate.outputs.build == 'true'
+        if: steps.fresh.outputs.build == 'true'
         working-directory: code
         env:
           SITE_DIR: /tmp/pages
@@ -160,11 +202,11 @@ jobs:
       # folder and the rest publishes. Tasá, the daily price game, came off the site on 2026-10-24 (Dennis): no step builds
       # it, so this orphan publish drops /tasa/.
       - name: Build Comparti
-        if: steps.gate.outputs.build == 'true'
+        if: steps.fresh.outputs.build == 'true'
         working-directory: code
         env:
           SITE_DIR: /tmp/pages
-          DATABASE_URL: ${{ secrets.READONLY_DATABASE_URL }}
+          DATABASE_URL: postgresql://tekoha_reader:tekoha@localhost:5432/postgres
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
           TEKOHA_PUBLIC_EMAIL: ${{ vars.TEKOHA_PUBLIC_EMAIL }}
           CF_ANALYTICS_TOKEN: ${{ vars.CF_ANALYTICS_TOKEN }}
@@ -178,7 +220,7 @@ jobs:
       # design: https://ddvanlith.github.io/<key>.txt, the root user site ddvanlith/ddvanlith.github.io, serves it, and the
       # repository variable INDEXNOW_KEY holds it. Unset, both steps skip; a failure never stops the publish.
       - name: IndexNow list
-        if: steps.gate.outputs.build == 'true' && vars.INDEXNOW_KEY != ''
+        if: steps.fresh.outputs.build == 'true' && vars.INDEXNOW_KEY != ''
         continue-on-error: true
         working-directory: code
         run: |
@@ -187,7 +229,7 @@ jobs:
       # Nothing is cloned: each run is one orphan commit force-pushed to gh-pages, so the repo never holds
       # more than the latest build.
       - name: Publish to gh-pages
-        if: steps.gate.outputs.build == 'true'
+        if: steps.fresh.outputs.build == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -201,7 +243,7 @@ jobs:
           echo "published $(git ls-files | wc -l) files, $(du -sh --exclude=.git . | cut -f1)"
 
       - name: IndexNow submit
-        if: steps.gate.outputs.build == 'true' && vars.INDEXNOW_KEY != ''
+        if: steps.fresh.outputs.build == 'true' && vars.INDEXNOW_KEY != ''
         continue-on-error: true
         timeout-minutes: 12
         working-directory: code
