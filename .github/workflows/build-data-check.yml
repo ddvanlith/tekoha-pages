@@ -74,4 +74,6 @@ jobs:
         run: |
           git clone -q --depth 1 --branch gh-pages https://github.com/ddvanlith/tekoha-pages.git /tmp/published
           git -C /tmp/published log -1 --format='published: %h %cI %s'
-          node code/pipeline/build-data/compare.mjs /tmp/pages /tmp/published
+          node code/pipeline/build-data/compare.mjs /tmp/pages /tmp/published --samples 2
+          echo "Without the build's own clock (as_of):"
+          node code/pipeline/build-data/compare.mjs /tmp/pages /tmp/published --samples 3 --ignore '"as_of":"[^"]*"'
