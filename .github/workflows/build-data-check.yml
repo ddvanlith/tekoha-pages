@@ -76,4 +76,12 @@ jobs:
           git -C /tmp/published log -1 --format='published: %h %cI %s'
           node code/pipeline/build-data/compare.mjs /tmp/pages /tmp/published --samples 2
           echo "Without the build's own clock (as_of):"
-          node code/pipeline/build-data/compare.mjs /tmp/pages /tmp/published --samples 3 --ignore '"as_of":"[^"]*"'
+          node code/pipeline/build-data/compare.mjs /tmp/pages /tmp/published --samples 3 --ignore '"as_of":"[^"]*"' --copy /tmp/differ
+
+      # Both sides of each file that still differs, kept one day: public pages only, the same files the site publishes.
+      - uses: actions/upload-artifact@v4
+        with:
+          name: differing-files
+          path: /tmp/differ
+          retention-days: 1
+          if-no-files-found: ignore
