@@ -34,6 +34,26 @@ jobs:
           persist-credentials: false
           path: build-data
 
+      - uses: actions/checkout@v5
+        with:
+          path: self
+
+      # The stale-export guard exactly as pages.yml (this branch) and dashboard.yml (tekoha-daily, branch build-data) run
+      # it: on the real export, and on a copy whose export time and run id are older than the newest pipeline run.
+      - name: Stale-export guard, as the builds run it
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          yq '.jobs.pages.steps[] | select(.id == "fresh") | .run' self/.github/workflows/pages.yml > /tmp/fresh-pages.sh
+          curl -fsSL https://raw.githubusercontent.com/ddvanlith/tekoha-daily/build-data/.github/workflows/dashboard.yml \
+            | yq '.jobs.dashboard.steps[] | select(.id == "fresh") | .run' | sed 's#\$GITHUB_REPOSITORY#ddvanlith/tekoha-daily#' > /tmp/fresh-dash.sh
+          mkdir -p /tmp/stale/build-data
+          jq '.exported_at = "2026-11-01T00:00:00.000Z" | .pipeline_run = "1-1"' build-data/manifest.json > /tmp/stale/build-data/manifest.json
+          for s in pages dash; do
+            : > /tmp/out; GITHUB_OUTPUT=/tmp/out bash -eo pipefail /tmp/fresh-$s.sh; echo "$s, real export: $(cat /tmp/out)"
+            : > /tmp/out; (cd /tmp/stale && GITHUB_OUTPUT=/tmp/out bash -eo pipefail /tmp/fresh-$s.sh); echo "$s, stale copy: $(cat /tmp/out)"
+          done
+
       - uses: actions/setup-node@v5
         with:
           node-version: 22
