@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Compartí Tekoha: tu link personal</title>
+<meta name="description" content="Pedí tu link de Tekoha. Cuando 3 personas se suscriban a Tekoha Semanal con tu link, te mandamos cada semana las bajas de precio de tu barrio. Gratis.">
+<meta name="robots" content="noindex">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Tekoha">
+<meta property="og:locale" content="es_PY">
+<meta property="og:title" content="Compartí Tekoha">
+<meta property="og:description" content="Cuando 3 personas se suscriban con tu link, te mandamos cada semana las bajas de precio de tu barrio. Gratis.">
+<meta property="og:url" content="https://ddvanlith.github.io/tekoha-pages/compartir/">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="/brand/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/brand/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/brand/apple-touch-icon-180.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="preload" href="/brand/fonts/bricolage-grotesque.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="modulepreload" href="compartir.js?v=6110e4a4e0">
+<link rel="modulepreload" href="capture.js?v=6110e4a4e0">
+<style>
+/* The Tekoha brand (2026-11-05): cobalt, coral, ink and ice; Bricolage Grotesque (the root site's cut); light pages only. */
+@font-face{font-family:"Bricolage Grotesque";src:url(/brand/fonts/bricolage-grotesque.woff2) format("woff2");font-weight:400 800;font-style:normal;font-display:swap}
+:root{--cobalt:#2D5BFF;--coral:#FF6B57;--ink:#0C1838;--ice:#EEF2FF;
+--bg:#FFFFFF;--ink-2:#34405F;--ink-3:#56627F;--line:#DCE3F7;--line-2:#C3CDEA;--panel:var(--ice);--panel-2:#E4EAFB;--accent:var(--cobalt);--ok:var(--cobalt);--warn:#C2412D;
+--sans:"Bricolage Grotesque",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color-scheme:light}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:400 18px/1.45 var(--sans);-webkit-text-size-adjust:100%}
+body{overflow-x:hidden}
+a{color:var(--accent)}
+button,input{font:inherit;color:inherit}
+[hidden]{display:none!important}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.top{display:flex;align-items:center;gap:4px;max-width:720px;margin:0 auto;padding:6px 12px 6px 16px;min-height:60px}
+.brand{display:flex;align-items:center;margin-right:auto;min-height:44px;text-decoration:none}
+.brand img{display:block;height:28px;width:auto}
+.nav a,.nav button{display:inline-flex;align-items:center;min-height:44px;min-width:44px;justify-content:center;padding:0 9px;border:0;background:none;color:var(--ink-2);font-size:16px;text-decoration:none;cursor:pointer;border-radius:10px}
+.nav .lang{border:1px solid var(--line);border-radius:999px;font-weight:600;font-size:14px;letter-spacing:.04em;color:var(--ink)}
+main{max-width:720px;margin:0 auto;padding:0 16px 40px}
+h1{font-size:30px;line-height:1.1;letter-spacing:-.025em;font-weight:800;margin:6px 0 10px}
+h2{font-size:22px;line-height:1.2;letter-spacing:-.015em;font-weight:700;margin:0 0 10px}
+.rule{margin:0 0 18px;padding:14px 16px;border-left:4px solid var(--coral);border-radius:0 10px 10px 0;background:var(--panel);font-size:19px;line-height:1.4}
+.fld{display:block;margin:0 0 14px}
+.lab{display:block;margin:0 0 6px;font-size:16px;font-weight:700;color:var(--ink-2)}
+.inp{width:100%;min-height:50px;padding:10px 12px;border:1px solid var(--line-2);border-radius:10px;background:#fff;font-size:18px}
+.inp:focus{border-color:var(--accent);outline:2px solid var(--accent);outline-offset:0}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:4px;background:var(--panel-2);border-radius:12px}
+.seg label{position:relative;display:block;cursor:pointer}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg span{display:flex;align-items:center;justify-content:center;min-height:44px;border-radius:9px;font-weight:700;color:var(--ink-2)}
+.seg input:checked+span{background:#fff;color:var(--accent);box-shadow:0 1px 3px rgba(12,24,56,.14)}
+.seg input:focus-visible+span{outline:3px solid var(--accent);outline-offset:2px}
+.hint{margin:6px 0 0;font-size:15px;color:var(--ink-3)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:0 18px;border:1px solid var(--line-2);border-radius:12px;background:#fff;color:var(--ink);font-weight:600;font-size:17px;text-decoration:none;cursor:pointer;text-align:center}
+.btn:hover{border-color:var(--accent)}
+.btn.pri{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.wide{width:100%}
+.btn:disabled{opacity:.55;cursor:default}
+.msg{min-height:24px;margin:10px 0 0;font-size:16px}
+.msg.bad{color:var(--warn)}.msg.okm{color:var(--ok)}
+.mylink{margin:0 0 12px;padding:14px;border:1px solid rgba(12,24,56,.09);border-radius:14px;box-shadow:0 1px 2px rgba(12,24,56,.05),0 8px 22px rgba(12,24,56,.08)}
+.mylink code{display:block;margin:4px 0 12px;padding:12px;border-radius:10px;background:var(--panel);font:700 17px/1.35 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;word-break:break-all}
+.acts{display:flex;flex-wrap:wrap;gap:10px}
+.acts .btn{flex:1 1 180px}
+.count{margin:18px 0 0;padding:16px;border-radius:14px;background:var(--panel)}
+.count .big{font-size:24px;font-weight:800;line-height:1.25;margin:0 0 8px}
+.count p{margin:0 0 8px}
+.bar{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:10px 0 12px}
+.bar i{height:12px;border-radius:6px;background:var(--panel-2);border:1px solid var(--line)}
+.bar i.on{background:var(--accent);border-color:var(--accent)}
+.small{font-size:15px;color:var(--ink-3)}
+.more{margin:22px 0 0;padding:16px 0 0;border-top:1px solid var(--line)}
+.more p{margin:0 0 10px}
+.foot{max-width:720px;margin:0 auto;padding:18px 16px 32px;border-top:1px solid var(--line);font-size:15px;color:var(--ink-3)}
+.foot p{margin:0 0 8px}.foot a{display:inline-flex;align-items:center;min-height:44px;margin-right:14px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);padding:10px 16px;border-radius:10px;background:var(--ink);color:#fff;font-size:16px;z-index:60}
+.hp{position:absolute;left:-5000px}
+</style>
+<script>
+(function () {
+  try {
+    var m = /[?&]r=([A-Za-z0-9]{7})(?=&|#|$)/.exec(location.search), r = m && m[1].toLowerCase();
+    if (r && !localStorage.getItem("tekoha_ref") && r !== localStorage.getItem("tekoha_mycode")) localStorage.setItem("tekoha_ref", r);
+  } catch (e) {}
+})();
+</script>
+<script id="cfg" type="application/json">{"v":"6110e4a4e0","site":"https://ddvanlith.github.io/tekoha-pages","link":"https://ddvanlith.github.io/","goal":3,"supabase":"https://hlchvqlodqucqnvqcwvt.supabase.co","anon":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhsY2h2cWxvZHF1Y3FudnFjd3Z0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc0NjY0ODAsImV4cCI6MjEwMzA0MjQ4MH0.TtMboA9Q1ACtGGJK0JvXlJfWAMsqW3e_e51evFajxDs","to":""}</script>
+<script>(function () { try { if (localStorage.getItem("casa-lang") === "en") document.documentElement.lang = "en"; } catch (e) {} })();</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="./"><img src="/brand/lockup.svg" alt="Tekoha" width="131" height="28"></a>
+  <nav class="nav"><a href="../casa/" id="ncasa">Casas</a><button class="lang" type="button" id="lang" aria-label="Read in English">EN</button></nav>
+</header>
+<main id="main"><p>Cargando.</p></main>
+<footer class="foot" id="foot"></footer>
+<script type="module" src="compartir.js?v=6110e4a4e0"></script>
+</body>
+</html>
