@@ -1,0 +1,2 @@
+// Written by pipeline/build-casa.mjs. The anon key is the public one (insert-only row security on public.signups).
+export default {"supabase":"https://hlchvqlodqucqnvqcwvt.supabase.co","anon":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhsY2h2cWxvZHF1Y3FudnFjd3Z0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc0NjY0ODAsImV4cCI6MjEwMzA0MjQ4MH0.TtMboA9Q1ACtGGJK0JvXlJfWAMsqW3e_e51evFajxDs","leadsEmail":"holatekoha@gmail.com","reportLink":"","policy":"2026-10-26","v":"cae3499e61","built":"2026-11-14T03:22:05.175Z"};
